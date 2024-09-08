@@ -1,0 +1,72 @@
+[
+  {
+    "name": "Manchester United Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/manutd-home-jersey.jpg"
+  },
+  {
+    "name": "Barcelona Away Jersey",
+    "price": 79.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/barca-away-jersey.jpg"
+  },
+  {
+    "name": "Juventus Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/juve-home-jersey.jpg"
+  },
+  {
+    "name": "Liverpool Third Jersey",
+    "price": 84.99,
+    "size": "XL",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/liverpool-third-jersey.jpg"
+  },
+  {
+    "name": "Bayern Munich Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/bayern-home-jersey.jpg"
+  },
+  {
+    "name": "Chelsea Away Jersey",
+    "price": 84.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/chelsea-away-jersey.jpg"
+  },
+  {
+    "name": "Real Madrid Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/real-madrid-home-jersey.jpg"
+  },
+  {
+    "name": "Arsenal Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/arsenal-home-jersey.jpg"
+  },
+  {
+    "name": "Manchester City Away Jersey",
+    "price": 84.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/manchester-city-away-jersey.jpg"
+  },
+  {
+    "name": "AC Milan Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/ac-milan-home-jersey.jpg"
+  }
+]

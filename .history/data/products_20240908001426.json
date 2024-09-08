@@ -1,0 +1,102 @@
+[
+  {
+    "name": "Manchester United Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "manu_home_20-21.jpg",
+    "season": "20-21",
+    "style": "Regular",
+    "team": "Manchester United"
+  },
+  {
+    "name": "Barcelona Away Jersey",
+    "price": 79.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/barca-away-jersey.jpg",
+    "season": "20-21",
+    "style": "Regular",
+    "team": "Barcelona"
+  },
+  {
+    "name": "Juventus Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/juve-home-jersey.jpg",
+    "season": "22-23",
+    "style": "Regular",
+    "team": "Juventus"
+  },
+  {
+    "name": "Liverpool Third Jersey",
+    "price": 84.99,
+    "size": "XL",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/liverpool-third-jersey.jpg",
+    "season": "22-23",
+    "style": "Regular",
+    "team": "Liverpool"
+  },
+  {
+    "name": "Bayern Munich Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/bayern-home-jersey.jpg",
+    "season": "20-21",
+    "style": "Regular",
+    "team": "Bayern Munich"
+  },
+  {
+    "name": "Chelsea Away Jersey",
+    "price": 84.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/chelsea-away-jersey.jpg",
+    "season": "23-24",
+    "style": "Regular",
+    "team": "Chelsea"
+  },
+  {
+    "name": "Real Madrid Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/real-madrid-home-jersey.jpg",
+    "season": "21-22",
+    "style": "Regular",
+    "team": "Real Madrid"
+  },
+  {
+    "name": "Arsenal Home Jersey",
+    "price": 89.99,
+    "size": "M",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/arsenal-home-jersey.jpg",
+    "season": "24-25",
+    "style": "Regular",
+    "team": "Arsenal"
+  },
+  {
+    "name": "Manchester City Away Jersey",
+    "price": 84.99,
+    "size": "L",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/manchester-city-away-jersey.jpg",
+    "season": "23-24",
+    "style": "Regular",
+    "team": "Manchester City"
+  },
+  {
+    "name": "AC Milan Home Jersey",
+    "price": 89.99,
+    "size": "S",
+    "availableSizes": "S,M,L,XL",
+    "imageUrl": "https://example.com/ac-milan-home-jersey.jpg",
+    "season": "23-24",
+    "style": "Regular",
+    "team": "AC Milan"
+  }
+]

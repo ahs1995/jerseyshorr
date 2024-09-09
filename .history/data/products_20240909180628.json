@@ -122,7 +122,7 @@
   },
 
   {
-    "name": "AC Milan Home Jersey",
+    "name": "Ac Milan Home Jersey",
     "price": 125.99,
     "size": "S",
     "availableSizes": "S,M,L,XL",
@@ -141,17 +141,6 @@
     "season": "06-07",
     "style": "Retro",
     "team": "Barcelona",
-    "createdAt": "2024-07-20T12:21:02+00:00"
-  },
-  {
-    "name": "Manchester United Home Jersey",
-    "price": 118.99,
-    "size": "S",
-    "availableSizes": "S,M,L,XL",
-    "imageUrl": "manutd_third_07-08.jpg",
-    "season": "07-08",
-    "style": "Retro",
-    "team": "Manchester United",
     "createdAt": "2024-07-20T12:21:02+00:00"
   }
 ]

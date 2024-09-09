@@ -1,6 +1,5 @@
 import clientPromise from "@/utils/mongodb";
 import ProductCard from "./ProductCard";
-import TeamCard from "./TeamCard";
 
 async function getProducts() {
   try {
@@ -13,10 +12,8 @@ async function getProducts() {
     const groupedProducts = {
       byStyle: {},
       newArrivals: [],
-      teams: {},
+      byTeam: {},
     };
-
-    const teamSet = new Set();
 
     products.forEach((product) => {
       // Group by style
@@ -25,8 +22,11 @@ async function getProducts() {
       }
       groupedProducts.byStyle[product.style].push(product);
 
-      // Track unique team
-      teamSet.add(product.team);
+      // Group by team
+      if (!groupedProducts.byTeam[product.team]) {
+        groupedProducts.byTeam[product.team] = [];
+      }
+      groupedProducts.byTeam[product.team].push(product);
 
       //Check if product is a new arrival
 
@@ -37,13 +37,6 @@ async function getProducts() {
       }
     });
 
-    // Create team data structure
-    groupedProducts.teams = Array.from(teamSet).map((team) => ({
-      name: team,
-      imageUrl: `/team-logos/${team.toLowerCase()}.png`,
-      productsCount: products.filter((p) => p.team === team).length,
-    }));
-
     return groupedProducts;
   } catch (e) {
     console.error(e);
@@ -51,7 +44,7 @@ async function getProducts() {
   }
 }
 async function ProductList() {
-  const { byStyle, newArrivals, teams } = await getProducts();
+  const { byStyle, newArrivals, byTeam } = await getProducts();
 
   return (
     <div>
@@ -77,16 +70,22 @@ async function ProductList() {
         </div>
       ))}
 
-      {teams.length > 0 && (
-        <div>
-          <h3 className="text-3xl font-bold">Team Jerseys</h3>
+      {Object.entries(byTeam).map(([team, products]) => (
+        <div key={team}>
+          <h3 className="text-3xl font-bold">{team} Jerseys</h3>
           <div className="p mx-6 my-10 flex flex-wrap justify-between">
-            {teams.map((team) => (
-              <TeamCard team={team} key={team.name} />
+            {products.map((product) => (
+              <ProductCard
+                product={{
+                  ...product,
+                  imageUrl: `/team-logos/${team.toLowerCase()}.png`,
+                }}
+                key={product._id}
+              />
             ))}
           </div>
         </div>
-      )}
+      ))}
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import clientPromise from "@/utils/mongodb";
 import ProductCard from "./ProductCard";
 import TeamCard from "./TeamCard";
+import Image from "next/image";
 
 async function getProducts() {
   try {

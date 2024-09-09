@@ -1,6 +1,5 @@
 import clientPromise from "@/utils/mongodb";
 import ProductCard from "./ProductCard";
-import TeamCard from "./TeamCard";
 
 async function getProducts() {
   try {
@@ -51,7 +50,7 @@ async function getProducts() {
   }
 }
 async function ProductList() {
-  const { byStyle, newArrivals, teams } = await getProducts();
+  const { byStyle, newArrivals, byTeam } = await getProducts();
 
   return (
     <div>
@@ -82,7 +81,24 @@ async function ProductList() {
           <h3 className="text-3xl font-bold">Team Jerseys</h3>
           <div className="p mx-6 my-10 flex flex-wrap justify-between">
             {teams.map((team) => (
-              <TeamCard team={team} key={team.name} />
+              <div
+                key={team.name}
+                className="bg-white rounded-lg p-4 shadow-md"
+              >
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-x-2">
+                    <img
+                      src={team.imageUrl}
+                      alt={team.name}
+                      className="h-12 w-12"
+                    />
+                    <p className="text-lg font-medium">{team.name}</p>
+                  </div>
+                  <button className="bg-blue-500 hover: bg-blue-600 text-white rounded px-4 py-2">
+                    View More
+                  </button>
+                </div>
+              </div>
             ))}
           </div>
         </div>

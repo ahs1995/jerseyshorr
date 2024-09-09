@@ -1,6 +1,5 @@
 import clientPromise from "@/utils/mongodb";
 import ProductCard from "./ProductCard";
-import TeamCard from "./TeamCard";
 
 async function getProducts() {
   try {
@@ -13,10 +12,7 @@ async function getProducts() {
     const groupedProducts = {
       byStyle: {},
       newArrivals: [],
-      teams: {},
     };
-
-    const teamSet = new Set();
 
     products.forEach((product) => {
       // Group by style
@@ -24,9 +20,6 @@ async function getProducts() {
         groupedProducts.byStyle[product.style] = [];
       }
       groupedProducts.byStyle[product.style].push(product);
-
-      // Track unique team
-      teamSet.add(product.team);
 
       //Check if product is a new arrival
 
@@ -37,13 +30,6 @@ async function getProducts() {
       }
     });
 
-    // Create team data structure
-    groupedProducts.teams = Array.from(teamSet).map((team) => ({
-      name: team,
-      imageUrl: `/team-logos/${team.toLowerCase()}.png`,
-      productsCount: products.filter((p) => p.team === team).length,
-    }));
-
     return groupedProducts;
   } catch (e) {
     console.error(e);
@@ -51,13 +37,13 @@ async function getProducts() {
   }
 }
 async function ProductList() {
-  const { byStyle, newArrivals, teams } = await getProducts();
+  const { byStyle, newArrivals } = await getProducts();
 
   return (
     <div>
       {newArrivals.length > 0 && (
         <div>
-          <h3 className="text-3xl font-bold">New Arrivals</h3>
+          <h3 className="text-3xl font-bold">Club Jerseys</h3>
           <div className="p mx-6 my-10 flex flex-wrap justify-between">
             {newArrivals.map((product) => (
               <ProductCard product={product} key={product._id} />
@@ -76,17 +62,6 @@ async function ProductList() {
           </div>
         </div>
       ))}
-
-      {teams.length > 0 && (
-        <div>
-          <h3 className="text-3xl font-bold">Team Jerseys</h3>
-          <div className="p mx-6 my-10 flex flex-wrap justify-between">
-            {teams.map((team) => (
-              <TeamCard team={team} key={team.name} />
-            ))}
-          </div>
-        </div>
-      )}
     </div>
   );
 }

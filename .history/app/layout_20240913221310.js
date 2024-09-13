@@ -6,7 +6,7 @@ import { Josefin_Sans } from "next/font/google";
 import CategoryNav from "./_components/CategoryNav";
 import NotfiicationBanner from "./_components/NotfiicationBanner";
 import Sidebar from "./_components/Sidebar";
-import { MenuProvider } from "@/context/menuContext";
+import { MenuProvider } from "../context/menuContext";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
         <NotfiicationBanner />
         <MenuProvider>
           <Sidebar />
-          <Header />
         </MenuProvider>
+        <Header />
         <CategoryNav />
         <div className="content-wrapper">
           <main>{children}</main>

@@ -1,5 +1,3 @@
-"use client";
-import { useMenu } from "@/context/menuContext";
 import {
   ChevronRightIcon,
   UserCircleIcon,
@@ -10,11 +8,10 @@ import Image from "next/image";
 import Link from "next/link";
 
 function Sidebar({ showSidebar }) {
-  const { showMenu, setShowMenu } = useMenu();
   return (
     <aside
-      className={`absolute left-0 top-0 z-[100000] h-full w-[80vw] bg-[#fff] shadow-md duration-300 ease-in-out ${
-        showMenu ? "translate-x-0" : "-translate-x-full"
+      className={`fixed left-0 top-10 z-[100000] h-full w-[350px] bg-[#fff] shadow-md duration-300 ease-in-out ${
+        showSidebar ? "translate-x-0" : "translate-x-full"
       }`}
     >
       <div className="relative py-6 text-primary-900">
@@ -22,7 +19,7 @@ function Sidebar({ showSidebar }) {
         <div className="absolute right-3">
           <XMarkIcon
             className="h-6 w-6 cursor-pointer text-primary-800"
-            onClick={() => setShowMenu(false)}
+            onClick={closeSidebar}
           />
         </div>
         {/* category list */}

@@ -16,18 +16,22 @@ const MenuButton = () => {
   };
 
   // Disable scrolling when the sidebar is open
-  useEffect(() => {
-    if (showMenu) {
-      document.body.classList.add("overflow-hidden");
-    } else {
-      document.body.classList.remove("overflow-hidden");
-    }
+  //   useEffect(() => {
+  //     const content = document.querySelector(".content-wrapper");
+  //     if (sidebarOpen) {
+  //       document.body.classList.add("overflow-hidden");
+  //       content.style.filter = "blur(2px) brightness(0.2)";
+  //     } else {
+  //       document.body.classList.remove("overflow-hidden");
+  //       content.style.filter = "none";
+  //     }
 
-    // Clean up the class when the component unmounts
-    return () => {
-      document.body.classList.remove("overflow-hidden");
-    };
-  }, [showMenu]);
+  //     // Clean up the class when the component unmounts
+  //     return () => {
+  //       document.body.classList.remove("overflow-hidden");
+  //       content.style.filter = "none";
+  //     };
+  //   }, [sidebarOpen]);
 
   return (
     <>

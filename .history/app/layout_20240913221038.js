@@ -27,8 +27,8 @@ export default function RootLayout({ children }) {
       <body className={`${josefin.className} flex min-h-screen flex-col`}>
         <NotfiicationBanner />
         <MenuProvider>
-          <Sidebar />
           <Header />
+          <Sidebar />
         </MenuProvider>
         <CategoryNav />
         <div className="content-wrapper">

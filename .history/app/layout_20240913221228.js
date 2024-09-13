@@ -28,8 +28,8 @@ export default function RootLayout({ children }) {
         <NotfiicationBanner />
         <MenuProvider>
           <Sidebar />
-          <Header />
         </MenuProvider>
+        <Header />
         <CategoryNav />
         <div className="content-wrapper">
           <main>{children}</main>

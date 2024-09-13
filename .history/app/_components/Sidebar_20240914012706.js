@@ -8,14 +8,25 @@ import {
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+
+const { showMenu, setShowMenu } = useMenu();
+const [isMobile, setIsMobile] = useState(false);
+
+useEffect(() => {
+  const checkScreenSize = () => {
+    setIsMobile(window.innerWidth < 768);
+  };
+
+  checkScreenSize();
+  window.addEventListener("resize", checkScreenSize);
+
+  return () => window.removeEventListener("resize", checkScreenSize);
+}, []);
+
+if (!isMobile) return null;
 
 function Sidebar({ showSidebar }) {
-  const { showMenu, setShowMenu, isMobile } = useMenu();
-
-  if (!isMobile) {
-    setShowMenu(false);
-  }
+  const { showMenu, setShowMenu } = useMenu();
   return (
     <aside
       className={`absolute left-0 top-0 z-[100000] h-full w-[80vw] bg-[#fff] shadow-md duration-300 ease-in-out ${

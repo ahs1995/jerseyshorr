@@ -9,9 +9,9 @@ function MenuProvider({ children }) {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
-    function checkScreenSize() {
+    const checkScreenSize = () => {
       setIsMobile(window.innerWidth < 768);
-    }
+    };
 
     checkScreenSize();
     window.addEventListener("resize", checkScreenSize);

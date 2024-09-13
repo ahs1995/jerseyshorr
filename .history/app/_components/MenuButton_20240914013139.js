@@ -17,7 +17,7 @@ const MenuButton = () => {
 
   // Disable scrolling when the sidebar is open
   useEffect(() => {
-    if (showMenu && isMobile) {
+    if (showMenu) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
@@ -27,7 +27,7 @@ const MenuButton = () => {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [showMenu, isMobile]);
+  }, [showMenu]);
 
   return (
     <>

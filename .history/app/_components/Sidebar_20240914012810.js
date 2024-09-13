@@ -8,14 +8,9 @@ import {
 } from "@heroicons/react/24/solid";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useState } from "react";
 
 function Sidebar({ showSidebar }) {
-  const { showMenu, setShowMenu, isMobile } = useMenu();
-
-  if (!isMobile) {
-    setShowMenu(false);
-  }
+  const { showMenu, setShowMenu } = useMenu();
   return (
     <aside
       className={`absolute left-0 top-0 z-[100000] h-full w-[80vw] bg-[#fff] shadow-md duration-300 ease-in-out ${

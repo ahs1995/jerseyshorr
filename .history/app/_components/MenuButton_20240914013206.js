@@ -27,7 +27,7 @@ const MenuButton = () => {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [showMenu, isMobile]);
+  }, [showMenu]);
 
   return (
     <>

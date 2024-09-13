@@ -10,6 +10,7 @@ import { MenuProvider } from "@/context/menuContext";
 import Overlay from "./_components/Overlay";
 
 const josefin = Josefin_Sans({
+  weight: "400",
   subsets: ["latin"],
   display: "swap",
 });

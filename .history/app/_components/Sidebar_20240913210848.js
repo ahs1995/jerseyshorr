@@ -9,7 +9,9 @@ import Link from "next/link";
 
 function Sidebar({ closeSidebar }) {
   return (
-    <aside className="fixed left-0 top-10 z-[100000] h-full w-[350px] bg-[#fff] shadow-md">
+    <aside
+      className={`sidebar-container fixed left-0 top-0 z-[100000] h-full w-[350px] bg-[#fff] shadow-md`}
+    >
       <div className="relative py-6 text-primary-900">
         {/* exit icon */}
         <div className="absolute right-3">

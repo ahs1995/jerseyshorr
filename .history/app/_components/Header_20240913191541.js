@@ -1,11 +1,13 @@
+import dynamic from "next/dynamic";
 import Logo from "./Logo";
 import Searchbar from "./Searchbar";
-import MenuButton from "./MenuButton";
 import {
   MagnifyingGlassIcon,
   ShoppingBagIcon,
   UserIcon,
 } from "@heroicons/react/24/solid";
+
+const MenuButton = dynamic(() => import("./MenuButton"), { ssr: false });
 
 function Header() {
   return (

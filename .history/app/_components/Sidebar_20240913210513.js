@@ -9,14 +9,15 @@ import Link from "next/link";
 
 function Sidebar({ closeSidebar }) {
   return (
-    <aside className="fixed left-0 top-10 z-[100000] h-full w-[350px] bg-[#fff] shadow-md">
+    <aside
+      className={`sidebar-container fixed left-0 top-0 z-[100000] h-full w-[350px] bg-[#fff] shadow-md transition-transform duration-300 ${
+        isOpen ? "translate-x-0" : "-translate-x-full"
+      } `}
+    >
       <div className="relative py-6 text-primary-900">
         {/* exit icon */}
         <div className="absolute right-3">
-          <XMarkIcon
-            className="h-6 w-6 cursor-pointer text-primary-800"
-            onClick={closeSidebar}
-          />
+          <XMarkIcon className="h-6 w-6 cursor-pointer text-primary-800" />
         </div>
         {/* category list */}
         <ul className="my-10 flex flex-col gap-4 font-bold uppercase text-primary-800">

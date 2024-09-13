@@ -7,15 +7,17 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 
-function Sidebar({ closeSidebar }) {
+function Sidebar({ toggleSidebar, onOpen }) {
   return (
-    <aside className="fixed left-0 top-10 z-[100000] h-full w-[350px] bg-[#fff] shadow-md">
+    <aside
+      className={`absolute left-0 top-10 z-[100000] h-full w-[350px] bg-[#fff] shadow-md transition-transform duration-500 ${toggleSidebar && onOpen ? "translate-x-100" : "translate-x-0"}`}
+    >
       <div className="relative py-6 text-primary-900">
         {/* exit icon */}
         <div className="absolute right-3">
           <XMarkIcon
             className="h-6 w-6 cursor-pointer text-primary-800"
-            onClick={closeSidebar}
+            onClick={toggleSidebar}
           />
         </div>
         {/* category list */}

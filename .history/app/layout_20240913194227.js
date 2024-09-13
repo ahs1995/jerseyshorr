@@ -5,6 +5,7 @@ import "@/app/_styles/globals.css";
 import { Josefin_Sans } from "next/font/google";
 import CategoryNav from "./_components/CategoryNav";
 import NotfiicationBanner from "./_components/NotfiicationBanner";
+import SidebarController from "./_components/SidebarController";
 
 const josefin = Josefin_Sans({
   subsets: ["latin"],
@@ -26,7 +27,7 @@ export default function RootLayout({ children }) {
         <NotfiicationBanner />
         <Header />
         <CategoryNav />
-        <div className="content-wrapper">
+        <div>
           <main>{children}</main>
         </div>
         <footer className="bg-primary-800">Copyright text</footer>

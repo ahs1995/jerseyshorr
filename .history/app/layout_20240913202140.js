@@ -6,10 +6,10 @@ import { Josefin_Sans } from "next/font/google";
 import CategoryNav from "./_components/CategoryNav";
 import NotfiicationBanner from "./_components/NotfiicationBanner";
 
-const josefin = Josefin_Sans({
-  subsets: ["latin"],
-  display: "swap",
-});
+// const josefin = Josefin_Sans({
+//   subsets: ["latin"],
+//   display: "swap",
+// });
 
 export const metadata = {
   title: {
@@ -22,7 +22,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${josefin.className} flex min-h-screen flex-col`}>
+      <body className={`flex min-h-screen flex-col`}>
         <NotfiicationBanner />
         <Header />
         <CategoryNav />

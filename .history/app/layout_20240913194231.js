@@ -26,7 +26,7 @@ export default function RootLayout({ children }) {
         <NotfiicationBanner />
         <Header />
         <CategoryNav />
-        <div className="content-wrapper">
+        <div>
           <main>{children}</main>
         </div>
         <footer className="bg-primary-800">Copyright text</footer>

@@ -24,10 +24,7 @@ export const metadata = {
   description: "Description about the app",
 };
 
-export default async function RootLayout({ children }) {
-  // Fetch product data's
-  const { byStyle, teams, newArrival } = await getProducts();
-
+export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body className={`${josefin.className} flex min-h-screen flex-col`}>
@@ -35,7 +32,7 @@ export default async function RootLayout({ children }) {
         <MenuProvider>
           <Overlay />
           <Sidebar />
-          <CategorySidebar byStyle={byStyle} teams={teams} />
+          <CategorySidebar />
           <Header />
         </MenuProvider>
         <CategoryNav />

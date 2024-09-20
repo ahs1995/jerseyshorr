@@ -23,6 +23,8 @@ function CategorySidebar({ byStyle, teams }) {
     return [...styleCategories, ...teamCategories];
   }, [byStyle, teams]);
 
+  console.log(styleCategories);
+
   if (!isMobile) {
     setShowCategorySide(false);
   }
@@ -49,18 +51,9 @@ function CategorySidebar({ byStyle, teams }) {
         </div>
         {/* content */}
 
-        <ul className="my-10 flex flex-col gap-4 text-sm font-normal capitalize text-primary-800">
-          {categories.map((category, index) => (
-            <li className="px-4" key={category.name}>
-              <Link href="#">
-                {category.type === "style"
-                  ? `${category.name} Styled Jerseys`
-                  : `${category.name} Jerseys`}
-              </Link>
-              {index < categories.length - 1 && (
-                <hr className="mt-4 w-full border-primary-100 outline-none" />
-              )}
-            </li>
+        <ul>
+          {teams.map((team) => (
+            <li key={team._id}>{team.name}</li>
           ))}
         </ul>
 

@@ -4,6 +4,7 @@ import TeamCard from "./TeamCard";
 
 async function ProductList() {
   const { byStyle, newArrivals, teams } = await getProducts();
+  console.log(newArrivals);
 
   return (
     // products container

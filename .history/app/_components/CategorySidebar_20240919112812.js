@@ -1,27 +1,13 @@
 "use client";
+
 import { useMenu } from "@/context/menuContext";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import CTASidebar from "./CTASidebar";
-import { useMemo } from "react";
 
-function CategorySidebar({ byStyle, teams }) {
+function CategorySidebar() {
   const { showCategorySide, setShowCategorySide, setShowMenu, isMobile } =
     useMenu();
-
-  // Create categories array
-  const categories = useMemo(() => {
-    const styleCategories = Object.keys(byStyle).map((style) => ({
-      name: style,
-      type: "style",
-    }));
-    const teamCategories = teams.map((team) => ({
-      name: team.name,
-      type: "team",
-      id: team._id,
-    }));
-    return [...styleCategories, ...teamCategories];
-  }, [byStyle, teams]);
 
   if (!isMobile) {
     setShowCategorySide(false);
@@ -48,23 +34,7 @@ function CategorySidebar({ byStyle, teams }) {
           </span>
         </div>
         {/* content */}
-
         <ul className="my-10 flex flex-col gap-4 text-sm font-normal capitalize text-primary-800">
-          {categories.map((category, index) => (
-            <li className="px-4" key={category.name}>
-              <Link href="#">
-                {category.type === "style"
-                  ? `${category.name} Styled Jerseys`
-                  : `${category.name} Jerseys`}
-              </Link>
-              {index < categories.length - 1 && (
-                <hr className="mt-4 w-full border-primary-100 outline-none" />
-              )}
-            </li>
-          ))}
-        </ul>
-
-        {/* <ul className="my-10 flex flex-col gap-4 text-sm font-normal capitalize text-primary-800">
           <li className="px-4">
             <Link href="#">category1</Link>
           </li>
@@ -97,7 +67,7 @@ function CategorySidebar({ byStyle, teams }) {
             <Link href="#">category8</Link>
           </li>
           <hr className="w-full border-primary-100 outline-none" />
-        </ul> */}
+        </ul>
         {/* CTA */}
         <CTASidebar />
       </div>

@@ -52,11 +52,7 @@ function CategorySidebar({ byStyle, teams }) {
         <ul className="my-10 flex flex-col gap-4 text-sm font-normal capitalize text-primary-800">
           {categories.map((category, index) => (
             <li className="px-4" key={category.name}>
-              <Link href="#">
-                {category.type === "style"
-                  ? `${category.name} Styled Jerseys`
-                  : `${category.name} Jerseys`}
-              </Link>
+              <Link href="#">{`${category.name} Jerseys`}</Link>
               {index < categories.length - 1 && (
                 <hr className="mt-4 w-full border-primary-100 outline-none" />
               )}

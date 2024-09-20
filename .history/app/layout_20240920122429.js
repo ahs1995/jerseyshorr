@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
         <MenuProvider>
           <Overlay />
           <Sidebar />
-          <CategorySidebar byStyle={byStyle} teams={teams} />
+          <CategorySidebar products={products} />
           <Header />
         </MenuProvider>
         <CategoryNav />

@@ -26,7 +26,7 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // Fetch product data's
-  const { byStyle, teams, newArrival } = await getProducts();
+  const products = await getProducts().find({}).lean();
 
   return (
     <html lang="en">
@@ -35,7 +35,7 @@ export default async function RootLayout({ children }) {
         <MenuProvider>
           <Overlay />
           <Sidebar />
-          <CategorySidebar byStyle={byStyle} teams={teams} />
+          <CategorySidebar products={products} />
           <Header />
         </MenuProvider>
         <CategoryNav />

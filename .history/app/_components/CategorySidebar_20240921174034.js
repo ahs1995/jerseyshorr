@@ -18,6 +18,7 @@ function CategorySidebar({ byStyle, teams }) {
     const teamCategories = teams.map((team) => ({
       name: team.name,
       type: "team",
+      id: team._id,
     }));
     return [...styleCategories, ...teamCategories];
   }, [byStyle, teams]);

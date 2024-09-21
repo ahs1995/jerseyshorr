@@ -3,7 +3,7 @@ import { useMenu } from "@/context/menuContext";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import CTASidebar from "./CTASidebar";
-import { useEffect, useMemo } from "react";
+import { useMemo } from "react";
 
 function CategorySidebar({ byStyle, teams }) {
   const { showCategorySide, setShowCategorySide, setShowMenu, isMobile } =
@@ -18,17 +18,14 @@ function CategorySidebar({ byStyle, teams }) {
     const teamCategories = teams.map((team) => ({
       name: team.name,
       type: "team",
+      id: team._id,
     }));
     return [...styleCategories, ...teamCategories];
   }, [byStyle, teams]);
 
-  // Check if device is mobile, only once on component mount
-  useEffect(() => {
-    if (!isMobile) {
-      // Ensure that the state update happens only after rendering is complete
-      setShowCategorySide(false);
-    }
-  }, [isMobile, setShowCategorySide]);
+  if (!isMobile) {
+    setShowCategorySide(false);
+  }
 
   return (
     <aside
@@ -56,9 +53,8 @@ function CategorySidebar({ byStyle, teams }) {
           {categories.map((category, index) => (
             <li className="px-4" key={category.name}>
               <Link
-                href={`/products/${encodeURIComponent(category.name)}`}
+                href={`/products?${category.type}=${encodeURIComponent(category.name)}`}
                 className="hover:text-primary-600"
-                onClick={() => setShowCategorySide(false)} // Close sidebar after click
               >
                 {category.type === "style"
                   ? `${category.name} Styled Jerseys`

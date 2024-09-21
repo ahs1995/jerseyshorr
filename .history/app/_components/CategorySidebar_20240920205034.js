@@ -18,6 +18,7 @@ function CategorySidebar({ byStyle, teams }) {
     const teamCategories = teams.map((team) => ({
       name: team.name,
       type: "team",
+      id: team._id,
     }));
     return [...styleCategories, ...teamCategories];
   }, [byStyle, teams]);
@@ -56,9 +57,13 @@ function CategorySidebar({ byStyle, teams }) {
           {categories.map((category, index) => (
             <li className="px-4" key={category.name}>
               <Link
-                href={`/products/${encodeURIComponent(category.name)}`}
+                href={`/products?${category.type}=${encodeURIComponent(category.name)}`}
                 className="hover:text-primary-600"
-                onClick={() => setShowCategorySide(false)} // Close sidebar after click
+                onClick={() =>
+                  console.log(
+                    `/products?${category.type}=${encodeURIComponent(category.name)}`,
+                  )
+                }
               >
                 {category.type === "style"
                   ? `${category.name} Styled Jerseys`

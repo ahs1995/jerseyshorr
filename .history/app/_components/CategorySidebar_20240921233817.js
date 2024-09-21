@@ -22,6 +22,8 @@ function CategorySidebar({ byStyle, teams }) {
     return [...styleCategories, ...teamCategories];
   }, [byStyle, teams]);
 
+  console.log(categories);
+
   // Check if device is mobile, only once on component mount
   useEffect(() => {
     if (!isMobile) {

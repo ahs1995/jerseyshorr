@@ -27,6 +27,7 @@ export const metadata = {
 export default async function RootLayout({ children }) {
   // Fetch product data's
   const { byStyle, teams, newArrival } = await getProducts();
+  console.log(byStyle);
 
   return (
     <html lang="en">

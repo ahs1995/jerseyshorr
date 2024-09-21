@@ -32,7 +32,11 @@ async function ProductList({
           </div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-y-6 lg:grid-cols-4 lg:gap-y-12 xl:grid-cols-5">
             {filteredProducts.map((product) => (
-              <ProductCard product={product} key={product._id} />
+              return
+              {
+
+                <ProductCard product={product} key={product._id} />
+              }
             ))}
           </div>
         </div>

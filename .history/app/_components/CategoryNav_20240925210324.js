@@ -101,7 +101,7 @@ function CategoryNav({ byStyle, teams }) {
                 return (
                   <li key={category.name}>
                     <Link
-                      href={`/collections/${encodeURIComponent(category.name)}`}
+                      href={`/products/${encodeURIComponent(category.name)}`}
                       onClick={() => setActiveCategory(false)}
                       className="hover:text-primary-600"
                     >

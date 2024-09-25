@@ -60,7 +60,7 @@ function CategoryNav({ byStyle, teams }) {
           <li>
             <Link
               className="cursor-pointer transition-colors duration-300 hover:text-accent-300"
-              href="/"
+              href="#"
             >
               home
             </Link>
@@ -104,8 +104,7 @@ function CategoryNav({ byStyle, teams }) {
                   <li key={category.name}>
                     <Link
                       href={`/products/${encodeURIComponent(category.name)}`}
-                      onClick={() => setActiveCategory(false)}
-                      className="hover:text-primary-600"
+                      onClick={() => handleMouseLeave()}
                     >
                       {category.type === "style"
                         ? `${category.name} Styled Jerseys`

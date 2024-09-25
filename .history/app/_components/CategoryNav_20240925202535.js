@@ -60,7 +60,7 @@ function CategoryNav({ byStyle, teams }) {
           <li>
             <Link
               className="cursor-pointer transition-colors duration-300 hover:text-accent-300"
-              href="/"
+              href="#"
             >
               home
             </Link>

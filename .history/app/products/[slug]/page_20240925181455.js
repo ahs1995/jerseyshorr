@@ -25,8 +25,13 @@ export default async function Page({ params }) {
       [];
   }
 
+  console.log(filteredProducts);
+
   return (
     <div>
+      {/* <h1 className="my-4 text-2xl font-bold">
+        {style ? `${style} Styled Jerseys` : `${teamSlug} Jerseys`}
+      </h1> */}
       <ProductList
         filteredProducts={filteredProducts}
         filteredCategoryType={styleSlug ? "style" : "team"}

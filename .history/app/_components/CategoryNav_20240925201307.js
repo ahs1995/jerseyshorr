@@ -60,7 +60,7 @@ function CategoryNav({ byStyle, teams }) {
           <li>
             <Link
               className="cursor-pointer transition-colors duration-300 hover:text-accent-300"
-              href="/"
+              href="#"
             >
               home
             </Link>
@@ -98,21 +98,15 @@ function CategoryNav({ byStyle, teams }) {
           className="absolute left-1 right-1 bg-[#fff] text-primary-900 shadow-md"
         >
           <div className="p-8 text-center">
-            <ul className="grid grid-cols-4 gap-8 text-sm">
+            <ul>
               {categories.map((category, index) => {
-                return (
-                  <li key={category.name}>
-                    <Link
-                      href={`/products/${encodeURIComponent(category.name)}`}
-                      onClick={() => setActiveCategory(false)}
-                      className="hover:text-primary-600"
-                    >
-                      {category.type === "style"
-                        ? `${category.name} Styled Jerseys`
-                        : `${category.name} Jerseys`}
-                    </Link>
-                  </li>
-                );
+                <li key={category.name}>
+                  <Link href={`/products/${encodeURIComponent(category.name)}`}>
+                    {category.type === "style"
+                      ? `${category.name} Styled Jerseys`
+                      : `${category.name} Jerseys`}
+                  </Link>
+                </li>;
               })}
             </ul>
           </div>

@@ -5,7 +5,6 @@ import Link from "next/link";
 import CTASidebar from "./CTASidebar";
 
 function CategorySidebar({ byStyle, teams }) {
-  console.log(teams);
   const { showCategorySide, setShowCategorySide, setShowMenu, isMobile } =
     useMenu();
 

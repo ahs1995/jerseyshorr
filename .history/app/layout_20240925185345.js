@@ -26,23 +26,24 @@ export const metadata = {
 
 export default async function RootLayout({ children }) {
   // Fetch product data's
-  const products = await getProducts();
+  const { byStyle, teams, newArrival } = await getProducts();
+
   return (
     <html lang="en">
-      <body className={`${josefin.className} flex min-h-screen flex-col`}>
-        <NotfiicationBanner />
-        <MenuProvider>
+      <MenuProvider>
+        <body className={`${josefin.className} flex min-h-screen flex-col`}>
+          <NotfiicationBanner />
           <Overlay />
           <Sidebar />
-          <CategorySidebar />
+          <CategorySidebar byStyle={byStyle} teams={teams} />
           <Header />
-        </MenuProvider>
-        <CategoryNav />
-        <div className="content-wrapper">
-          <main>{children}</main>
-        </div>
-        <footer className="bg-primary-800">Copyright text</footer>
-      </body>
+          <CategoryNav />
+          <div className="content-wrapper">
+            <main>{children}</main>
+          </div>
+          <footer className="mt-auto bg-primary-800">Copyright text</footer>
+        </body>
+      </MenuProvider>
     </html>
   );
 }

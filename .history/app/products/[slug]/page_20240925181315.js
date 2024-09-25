@@ -35,7 +35,6 @@ export default async function Page({ params }) {
       <ProductList
         filteredProducts={filteredProducts}
         filteredCategoryType={styleSlug ? "style" : "team"}
-        filteredCategoryName={styleSlug || teamSlug}
       />
     </div>
   );

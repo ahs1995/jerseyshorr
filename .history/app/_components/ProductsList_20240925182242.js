@@ -26,7 +26,7 @@ async function ProductList({
             <h3 className="mb-2 text-3xl font-bold md:text-4xl">
               {filteredCategoryType === "style"
                 ? `${filteredCategoryName} Styled Jerseys`
-                : `${filteredCategoryName} Jerseys`}
+                : `${filteredCategoryName} Team Jerseys`}
             </h3>
             <hr className="m-2 mx-auto w-1/2 border-t-2 border-accent-500" />
           </div>

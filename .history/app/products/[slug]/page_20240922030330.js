@@ -8,7 +8,7 @@ export default async function Page({ params }) {
   const { byStyle, teams, products } = await getProducts();
 
   // Determine if slug corresponds to a style or a team
-  const styleSlug = byStyle[decodedSlug] ? decodedSlug : null;
+  const style = byStyle[decodedSlug] ? decodedSlug : null;
   const teamSlug = products.find(
     (p) => p.team.toLowerCase() === decodedSlug.toLowerCase(),
   )
@@ -17,8 +17,8 @@ export default async function Page({ params }) {
 
   let filteredProducts = [];
 
-  if (styleSlug) {
-    filteredProducts = byStyle[styleSlug] || [];
+  if (style) {
+    filteredProducts = byStyle[style] || [];
   } else if (teamSlug) {
     filteredProducts =
       products.filter((p) => p.team.toLowerCase() === teamSlug.toLowerCase()) ||
@@ -29,14 +29,10 @@ export default async function Page({ params }) {
 
   return (
     <div>
-      {/* <h1 className="my-4 text-2xl font-bold">
+      <h1 className="my-4 text-2xl font-bold">
         {style ? `${style} Styled Jerseys` : `${teamSlug} Jerseys`}
-      </h1> */}
-      <ProductList
-        filteredProducts={filteredProducts}
-        filteredCategoryType={styleSlug ? "style" : "team"}
-        filteredCategoryName={styleSlug || teamSlug}
-      />
+      </h1>
+      <ProductList filteredProducts={filteredProducts} />
     </div>
   );
 }

@@ -97,7 +97,7 @@ async function page({ params }) {
               </div>
             </Button>
             <Button size="large" variant="primary">
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-2">
                 <span>buy now</span>
                 <span>
                   <ChevronRightIcon className="h-5 w-5" />

@@ -89,12 +89,10 @@ async function page({ params }) {
           {/*cta buttons */}
           <div className="mb-8 flex flex-row items-center gap-4 capitalize">
             <Button size="large" variant="secondary">
-              <div className="flex items-center gap-2">
-                <span>add to cart</span>
-                <span>
-                  <ShoppingCartIcon className="h-5 w-5" />
-                </span>
-              </div>
+              add to cart
+              <span>
+                <ShoppingCartIcon className="h-5 w-5" />
+              </span>
             </Button>
             <Button size="large" variant="primary">
               <div className="flex items-center gap-1">

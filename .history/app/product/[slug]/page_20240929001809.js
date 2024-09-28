@@ -3,11 +3,7 @@ import ProductDescription from "@/app/_components/client/ProductDescription";
 import ProductSize from "@/app/_components/client/ProductSize";
 import Quantity from "@/app/_components/client/Quantity";
 import { getProducts } from "@/app/_lib/services/productService";
-import {
-  ArrowRightIcon,
-  ChevronRightIcon,
-  ShoppingCartIcon,
-} from "@heroicons/react/24/solid";
+import { ArrowRightIcon, ChevronRightIcon } from "@heroicons/react/24/solid";
 import Image from "next/image";
 
 async function page({ params }) {
@@ -89,12 +85,7 @@ async function page({ params }) {
           {/*cta buttons */}
           <div className="mb-8 flex flex-row items-center gap-4 capitalize">
             <Button size="large" variant="secondary">
-              <div className="flex items-center gap-2">
-                <span>add to cart</span>
-                <span>
-                  <ShoppingCartIcon className="h-5 w-5" />
-                </span>
-              </div>
+              add to cart
             </Button>
             <Button size="large" variant="primary">
               <div className="flex items-center gap-1">

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "clsx": "^2.1.1",
     "dotenv": "^16.4.5",
     "eslint-plugin-tailwindcss": "^3.17.4",
     "mongodb": "^6.8.1",

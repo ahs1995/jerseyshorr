@@ -1,3 +1,5 @@
+import { Provider } from "react-redux";
+import store from "./_lib/store/store";
 import "@/app/_styles/globals.css";
 import Header from "@/app/_components/Header";
 import "@/app/_styles/globals.css";
@@ -9,7 +11,6 @@ import Sidebar from "./_components/Sidebar";
 import { MenuProvider } from "@/context/menuContext";
 import Overlay from "./_components/Overlay";
 import CategorySidebar from "./_components/CategorySidebar";
-import Providers from "./_components/Providers";
 
 const josefin = Josefin_Sans({
   weight: "400",
@@ -33,18 +34,18 @@ export default async function RootLayout({ children }) {
     <html lang="en">
       <MenuProvider>
         <body className={`${josefin.className} flex min-h-screen flex-col`}>
-          <Providers>
-            <NotfiicationBanner />
-            <Overlay />
-            <Sidebar />
-            <CategorySidebar byStyle={byStyle} teams={teams} />
-            <Header />
-            <CategoryNav byStyle={byStyle} teams={teams} />
-            <div className="content-wrapper">
+          <NotfiicationBanner />
+          <Overlay />
+          <Sidebar />
+          <CategorySidebar byStyle={byStyle} teams={teams} />
+          <Header />
+          <CategoryNav byStyle={byStyle} teams={teams} />
+          <div className="content-wrapper">
+            <Provider store={store}>
               <main>{children}</main>
-            </div>
-            <footer className="mt-auto bg-primary-800">Copyright text</footer>
-          </Providers>
+            </Provider>
+          </div>
+          <footer className="mt-auto bg-primary-800">Copyright text</footer>
         </body>
       </MenuProvider>
     </html>

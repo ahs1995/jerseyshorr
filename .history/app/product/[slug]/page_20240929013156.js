@@ -40,12 +40,13 @@ async function page({ params }) {
         {/* image */}
         <div className="mb-12 md:w-1/2 xl:w-1/3 2xl:w-1/4">
           {/* big image */}
-          <div className="relative z-[-1] mb-8 shadow-lg">
+          <div className="group relative z-[-1] mb-8 h-[300px] w-[300px] overflow-hidden shadow-lg">
             <Image
               src={imageUrl}
               alt="product image"
               height={600}
               width={600}
+              className="h-full w-full transform border-[1px] border-primary-50 object-cover shadow-md transition-transform duration-500 ease-in-out group-hover:scale-110"
             />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!

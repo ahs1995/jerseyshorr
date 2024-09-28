@@ -46,6 +46,7 @@ async function page({ params }) {
               alt="product image"
               height={600}
               width={600}
+              className="transition-transform duration-500 ease-in-out group-hover:scale-110"
             />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!

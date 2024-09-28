@@ -56,14 +56,14 @@ async function page({ params }) {
             {/*Generate dynamically */}
             <Image
               src={imageUrl}
-              alt="product image"
+              alt="#"
               height={100}
               width={100}
               className="border-[1px] border-primary-50 shadow-md"
             />
             <Image
               src={imageUrl}
-              alt="product image"
+              alt="#"
               height={100}
               width={100}
               className="border-[1px] border-primary-50 shadow-md"

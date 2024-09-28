@@ -43,9 +43,10 @@ async function page({ params }) {
           <div className="relative z-[-1] mb-8 shadow-lg">
             <Image
               src={imageUrl}
-              alt="product image"
+              alt="#"
               height={600}
               width={600}
+              className="hover:scale-200"
             />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!
@@ -56,14 +57,14 @@ async function page({ params }) {
             {/*Generate dynamically */}
             <Image
               src={imageUrl}
-              alt="product image"
+              alt="#"
               height={100}
               width={100}
               className="border-[1px] border-primary-50 shadow-md"
             />
             <Image
               src={imageUrl}
-              alt="product image"
+              alt="#"
               height={100}
               width={100}
               className="border-[1px] border-primary-50 shadow-md"

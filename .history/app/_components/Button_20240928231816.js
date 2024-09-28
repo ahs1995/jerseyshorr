@@ -6,7 +6,7 @@ function Button({ children, path, size = "small", variant = "primary" }) {
   const sizeClasses = {
     small: "px-2 py-1 text-sm",
     medium: "px-4 py-2 text-base",
-    large: "px-6 py-2 text-lg",
+    large: "px-8 py-2 text-lg",
   };
 
   // Define variant classes

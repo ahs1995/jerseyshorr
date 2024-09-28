@@ -32,11 +32,11 @@ async function page({ params }) {
   return (
     <div className="mx-auto w-[90%] py-8">
       {/* product container */}
-      <div className="md:flex md:gap-10">
+      <div>
         {/* image */}
-        <div className="mb-12 md:w-1/2">
+        <div className="mb-12">
           {/* big image */}
-          <div className="relative z-[-1] mb-8 shadow-lg">
+          <div className="relative mb-8 shadow-lg">
             <Image src={imageUrl} alt="#" height={600} width={600} />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!
@@ -61,50 +61,51 @@ async function page({ params }) {
             />
           </div>
         </div>
-
         {/*contents  */}
-        <div className="md:w-1/2">
-          <div>
-            <h3 className="mb-4 text-2xl text-primary-800">{`${name} [season ${season}]`}</h3>
-            {/* price */}
-            <div className="mb-8 flex items-center gap-6 text-2xl">
-              <h5 className="l text-accent-400 line-through">
-                <span>&#8377; </span>
-                {`${price}`}
-              </h5>
-              <h5>
-                <span>&#8377; </span>
-                {(price - (price * discount) / 100).toFixed(2)}
-              </h5>
-            </div>
-            {/* size */}
-            <ProductSize size={size} />
-            {/* quantity */}
-            <Quantity />
+        <div>
+          <h3 className="mb-4 text-2xl text-primary-800">{`${name} [season ${season}]`}</h3>
+          {/* price */}
+          <div className="mb-8 flex items-center gap-6 text-2xl">
+            <h5 className="l text-accent-400 line-through">
+              <span>&#8377; </span>
+              {`${price}`}
+            </h5>
+            <h5>
+              <span>&#8377; </span>
+              {(price - (price * discount) / 100).toFixed(2)}
+            </h5>
           </div>
-          {/*cta buttons */}
-          <div className="mb-8 flex flex-row items-center gap-4 capitalize">
-            <Button size="large" variant="secondary">
-              add to cart
-            </Button>
-            <Button size="large" variant="primary">
-              <div className="flex items-center gap-1">
-                <span>buy now</span>
-                <span>
-                  <ChevronRightIcon className="h-5 w-5" />
-                </span>
-              </div>
-            </Button>
-          </div>
-          {/* description */}
-          <ProductDescription
-            content={description}
-            name={name}
-            material={material}
-            season={season}
-          />
-          {/* related products */}
+          {/* size */}
+          <ProductSize size={size} />
+          {/* quantity */}
+          <Quantity />
         </div>
+        {/*cta buttons */}
+        <div className="mb-8 flex flex-row items-center gap-4 capitalize">
+          <Button size="large" variant="secondary">
+            add to cart
+          </Button>
+          <Button size="large" variant="primary">
+            <div className="flex items-center gap-1">
+              <span>buy now</span>
+              <span>
+                <ChevronRightIcon className="h-5 w-5" />
+              </span>
+            </div>
+          </Button>
+        </div>
+        {/* description */}
+        {/* <div>
+          <h5 className="mb-2 text-xl">product description:</h5>
+          <p>{replacePlaceholders(description)}</p>
+        </div> */}
+        <ProductDescription
+          content={description}
+          name={name}
+          material={material}
+          season={season}
+        />
+        {/* related products */}
       </div>
     </div>
   );

@@ -36,8 +36,14 @@ async function page({ params }) {
         {/* image */}
         <div className="mb-12 md:w-1/2">
           {/* big image */}
-          <div className="relative z-[-1] mb-8 shadow-lg">
-            <Image src={imageUrl} alt="#" height={600} width={600} />
+          <div className="relative mb-8 shadow-lg">
+            <Image
+              src={imageUrl}
+              alt="#"
+              height={600}
+              width={600}
+              className="z-[-100]"
+            />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!
             </span>

@@ -36,7 +36,7 @@ async function page({ params }) {
         {/* image */}
         <div className="mb-12 md:w-1/2">
           {/* big image */}
-          <div className="relative z-[-1] mb-8 shadow-lg">
+          <div className="relative mb-8 shadow-lg">
             <Image src={imageUrl} alt="#" height={600} width={600} />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!
@@ -83,8 +83,8 @@ async function page({ params }) {
             <Quantity />
           </div>
           {/*cta buttons */}
-          <div className="mb-8 flex flex-row items-center gap-4 capitalize">
-            <Button size="large" variant="secondary">
+          <div className="mb-8 flex flex-row items-center gap-4 capitalize md:flex-col md:items-start">
+            <Button size={sm ? "large" : "medium"} variant="secondary">
               add to cart
             </Button>
             <Button size="large" variant="primary">

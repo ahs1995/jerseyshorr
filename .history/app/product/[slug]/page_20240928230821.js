@@ -30,13 +30,13 @@ async function page({ params }) {
   } = product;
 
   return (
-    <div className="mx-auto w-[90%] py-8">
+    <div className="mx-auto w-[95%] py-8">
       {/* product container */}
-      <div className="md:flex md:gap-10">
+      <div className="md:flex">
         {/* image */}
         <div className="mb-12 md:w-1/2">
           {/* big image */}
-          <div className="relative z-[-1] mb-8 shadow-lg">
+          <div className="relative mb-8 shadow-lg">
             <Image src={imageUrl} alt="#" height={600} width={600} />
             <span className="absolute left-4 top-2 text-lg text-accent-400">
               Sale!

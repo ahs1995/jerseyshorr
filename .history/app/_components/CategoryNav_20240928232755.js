@@ -93,7 +93,7 @@ function CategoryNav({ byStyle, teams }) {
           ref={categoryRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          className="z-1 absolute left-1 right-1 bg-[#fff] text-primary-900 shadow-md"
+          className="z-100 absolute left-1 right-1 bg-[#fff] text-primary-900 shadow-md"
         >
           <div className="z-100000 p-8 text-center">
             <ul className="grid grid-cols-4 gap-8 text-sm">

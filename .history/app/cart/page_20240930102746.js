@@ -9,7 +9,6 @@ function page() {
   console.log(cartItems);
   return (
     <div>
-      <h2>your cart</h2>
       {/* items container */}
       <div>
         <div>
@@ -21,12 +20,7 @@ function page() {
           <div key={item._id}>
             {/* product image */}
             <div>
-              <Image
-                src={item.image}
-                height={7}
-                width={7}
-                alt="product image"
-              />
+              <Image src={item.image} className="h-7 w-7" alt="product image" />
             </div>
 
             {/* Product details */}

@@ -28,7 +28,6 @@ function AddToCartButton({ product, discountedPrice }) {
       season: product.season,
       size: selectedSize,
       image: product.imageUrl,
-      style: product.style,
     };
     dispatch(addItem(newItem));
     toast.success("Item added to cart successfully!");

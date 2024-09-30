@@ -9,7 +9,6 @@ function page() {
   console.log(cartItems);
   return (
     <div>
-      <h2>your cart</h2>
       {/* items container */}
       <div>
         <div>

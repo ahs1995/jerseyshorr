@@ -31,9 +31,7 @@ async function page({ params }) {
     material,
   } = product;
 
-  const discountedPrice = price - (price * discount) / 100;
-
-  // Fix padding. the child container of page element should have paddings.
+  const discountedPrice = (price - (price * discount) / 100).toFixed(2);
 
   return (
     <div className="mx-auto w-[90%] py-8 lg:py-12 xl:w-[80%]">

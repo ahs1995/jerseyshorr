@@ -1,12 +1,10 @@
 "use client";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Image from "next/image";
 import Quantity from "./Quantity";
-import { deleteItem, getCart } from "@/app/_lib/store/cartSlice";
-import { TrashIcon } from "@heroicons/react/24/solid";
+import { getCart } from "@/app/_lib/store/cartSlice";
 
 function Cart() {
-  const dispatch = useDispatch();
   const cartItems = useSelector(getCart);
   return (
     <div className="py-6">
@@ -25,7 +23,7 @@ function Cart() {
             // item container
             <div
               key={item.jerseyId}
-              className="flex flex-row justify-between gap-10 border-[1px] border-primary-50 px-2 py-4"
+              className="flex flex-row justify-between border-2 border-primary-100 px-2 py-4"
             >
               {/* product */}
               <div className="flex gap-4">
@@ -48,19 +46,15 @@ function Cart() {
                     <h4 className="text-primary-500">{item.style}</h4>
                   </div>
                   {/* quantity update box */}
-                  <div className="flex items-center gap-4">
-                    <Quantity jerseyId={item.jerseyId} />
-                    <TrashIcon
-                      className="h-5 w-5 cursor-pointer text-primary-800"
-                      onClick={() => dispatch(deleteItem(item.jerseyId))}
-                    />
+                  <div>
+                    <Quantity />
                   </div>
                 </div>
               </div>
               {/* price details */}
               <div>
-                <span className="text-md text-primary-800">
-                  {`Rs. ${item.totalPrice.toFixed(2)}`}
+                <span className="text-sm text-primary-800">
+                  {item.totalPrice}
                 </span>
               </div>
             </div>
@@ -68,7 +62,6 @@ function Cart() {
         </div>
       </div>
       {/* Order summary container */}
-      <div></div>
       {/* CTA buttons */}
     </div>
   );

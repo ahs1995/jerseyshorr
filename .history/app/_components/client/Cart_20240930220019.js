@@ -51,8 +51,8 @@ function Cart() {
                   <div className="flex items-center gap-4">
                     <Quantity jerseyId={item.jerseyId} />
                     <TrashIcon
-                      className="h-5 w-5 cursor-pointer text-primary-800"
-                      onClick={() => dispatch(deleteItem(item.jerseyId))}
+                      className="h-5 w-5 text-primary-800"
+                      onClick={() => dispatch(deleteItem())}
                     />
                   </div>
                 </div>

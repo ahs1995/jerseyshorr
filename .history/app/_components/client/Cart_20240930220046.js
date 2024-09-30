@@ -52,7 +52,7 @@ function Cart() {
                     <Quantity jerseyId={item.jerseyId} />
                     <TrashIcon
                       className="h-5 w-5 cursor-pointer text-primary-800"
-                      onClick={() => dispatch(deleteItem(item.jerseyId))}
+                      onClick={() => dispatch(deleteItem())}
                     />
                   </div>
                 </div>

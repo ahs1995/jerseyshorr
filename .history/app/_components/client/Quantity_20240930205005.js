@@ -32,13 +32,11 @@ function Quantity({ quantity, setQuantity, jerseyId }) {
 
   return (
     <div className={!jerseyId ? "mb-8" : ""}>
-      {!jerseyId && (
-        <h5 className="mb-2 text-xs font-semibold uppercase text-primary-800">
-          quantity:
-        </h5>
-      )}
+      <h5 className="mb-2 text-xs font-semibold uppercase text-primary-800">
+        quantity:
+      </h5>
       <div
-        className={`${!jerseyId ? "mb-4" : ""} flex w-[8rem] flex-row items-center justify-evenly border-[0.5px] border-primary-200 py-2 text-lg`}
+        className={`${!jerseyId ? "mb-4" : ""} flex w-[30%] flex-row items-center justify-evenly border-[0.5px] border-primary-200 py-2 text-lg xl:w-[20%] 2xl:w-[15%]`}
       >
         <span className="cursor-pointer" onClick={decrement}>
           <MinusIcon className="h-4 w-4 text-primary-800" />

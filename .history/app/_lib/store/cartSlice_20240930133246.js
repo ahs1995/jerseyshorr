@@ -11,7 +11,6 @@ export const loadCart = createAsyncThunk("cart/loadCart", async () => {
 
 const initialState = {
   cart: [],
-  loaded: false,
 };
 
 const cartSlice = createSlice({
@@ -32,7 +31,6 @@ const cartSlice = createSlice({
   extraReducers: (builder) => {
     builder.addCase(loadCart.fulfilled, (state, action) => {
       state.cart = action.payload;
-      state.loaded = true;
     });
   },
 });

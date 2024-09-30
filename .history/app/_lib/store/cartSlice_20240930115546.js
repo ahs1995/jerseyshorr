@@ -1,17 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-// Thunk to load cart from localStorage
-export const loadCart = createAsyncThunk("cart/loadCart", async () => {
-  const savedCart = localStorage.getItem("cart");
-  if (savedCart) {
-    return JSON.parse(savedCart);
-  }
-  return [];
-});
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
-  loaded: false,
 };
 
 const cartSlice = createSlice({
@@ -28,12 +18,6 @@ const cartSlice = createSlice({
     clearCart(state) {
       state.cart = [];
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(loadCart.fulfilled, (state, action) => {
-      state.cart = action.payload;
-      state.loaded = true;
-    });
   },
 });
 

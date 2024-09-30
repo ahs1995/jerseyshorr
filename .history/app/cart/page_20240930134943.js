@@ -8,7 +8,7 @@ import { useEffect } from "react";
 function page() {
   const dispatch = useDispatch();
   const cartItems = useSelector(getCart);
-  const isCartLoaded = useSelector((state) => state.cart.loaded);
+  const isCartLoaded = useSelector((state)=> state.cart.loaded)''
 
   // load cart from localStorage on component mount
   useEffect(() => {
@@ -18,7 +18,8 @@ function page() {
   // Sync cart with localStorage whenever the cart items change
 
   useEffect(() => {
-    if (isCartLoaded) {
+    if(isCartLoaded) {
+
       localStorage.setItem("cart", JSON.stringify(cartItems));
     }
   }, [cartItems, isCartLoaded]);

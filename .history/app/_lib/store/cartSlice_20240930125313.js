@@ -1,17 +1,7 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-// Thunk to load cart from localStorage
-export const loadCart = createAsyncThunk("cart/loadCart", async () => {
-  const savedCart = localStorage.getItem("cart");
-  if (savedCart) {
-    return JSON.parse(savedCart);
-  }
-  return [];
-});
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   cart: [],
-  loaded: false,
 };
 
 const cartSlice = createSlice({
@@ -19,21 +9,28 @@ const cartSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action) {
+      const existingItem = state.cart.find(
+        (item) =>
+          item.jerseyId === action.payload.jerseyId &&
+          item.size === action.payload.size,
+      );
+      if (existingItem) {
+        existingItem.quantity += action.payload.quantity;
+        existingItem.totalPrice =
+          existingItem.unitPrice * existingItem.quantity;
+      }
       state.cart.push(action.payload);
     },
 
     deleteItem(state, action) {
-      state.cart = state.cart.filter((item) => item.id !== action.payload);
+      state.cart = state.cart.filter(
+        (item) =>
+          item.jerseyId !== action.payload || item.size !== action.payload.size,
+      );
     },
     clearCart(state) {
       state.cart = [];
     },
-  },
-  extraReducers: (builder) => {
-    builder.addCase(loadCart.fulfilled, (state, action) => {
-      state.cart = action.payload;
-      state.loaded = true;
-    });
   },
 });
 

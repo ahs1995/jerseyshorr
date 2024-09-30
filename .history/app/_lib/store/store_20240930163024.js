@@ -1,4 +1,4 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { combineReducers, configureStore } from "@reduxjs/toolkit";
 import cartReducer from "@/app/_lib/store/cartSlice";
 import storage from "redux-persist/lib/storage";
 import autoMergeLevel2 from "redux-persist/es/stateReconciler/autoMergeLevel2";
@@ -23,3 +23,11 @@ export const store = configureStore({
     }),
 });
 export const persistor = persistStore(store);
+
+// const store = configureStore({
+//   reducer: {
+//     cart: cartReducer,
+//   },
+// });
+
+// export default store;

@@ -21,6 +21,12 @@ const cartSlice = createSlice({
       state.cart = [];
     },
   },
+  // extraReducers: (builder) => {
+  //   builder.addCase(loadCart.fulfilled, (state, action) => {
+  //     state.cart = action.payload;
+  //     state.loaded = true;
+  //   });
+  // },
 });
 
 export const { addItem, deleteItem, clearCart } = cartSlice.actions;
@@ -31,9 +37,9 @@ export const getItemQuantity = (state) =>
   state.cart?.reduce((sum, item) => sum + item.quantity, 0);
 
 export const getItemPrice = (state) =>
-  state.cart?.reduce((sum, item) => sum + item.totalPrice, 0);
+  state.cart?.cart?.reduce((sum, item) => sum + item.totalPrice, 0);
 
 export const getCart = (state) => state.cart;
 
 export const getCurrentQuantity = (id) => (state) =>
-  state.cart?.find((item) => item.jerseyId === id)?.quantity ?? 0;
+  state.cart?.cart?.find((item) => item.jerseyId === id)?.quantity ?? 0;

@@ -21,6 +21,12 @@ const cartSlice = createSlice({
       state.cart = [];
     },
   },
+  // extraReducers: (builder) => {
+  //   builder.addCase(loadCart.fulfilled, (state, action) => {
+  //     state.cart = action.payload;
+  //     state.loaded = true;
+  //   });
+  // },
 });
 
 export const { addItem, deleteItem, clearCart } = cartSlice.actions;

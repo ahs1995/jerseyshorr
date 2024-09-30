@@ -13,13 +13,13 @@ function Button({
     small: "px-2 py-1 text-sm",
     medium: "px-4 py-2 text-base",
     large: "px-6 py-2 text-lg",
-    xl: "px-6 py-4 text-sm text-center uppercase font-semibold",
+    xl: "px-6 py-4 text-sm text-center uppercase",
   };
 
   // Define variant classes
   const variantClasses = {
     primary:
-      "bg-accent-500 text-accent-50 border-transparent shadow-sm shadow-primary-700 ",
+      "bg-accent-500 text-primary-50 border-transparent shadow-sm shadow-primary-700 ",
     secondary: "bg-transparent text-accent-500 border-accent-500 border",
   };
 

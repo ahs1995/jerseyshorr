@@ -98,7 +98,7 @@ function Cart() {
                 (inclusive of all taxes)
               </h5>
             </div>
-            <span>{`Rs. ${totalPrice.toFixed(2)}`}</span>
+            <span>{`Rs. ${totalPrice}`}</span>
           </div>
         </div>
       </div>

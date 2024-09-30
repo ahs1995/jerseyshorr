@@ -76,7 +76,7 @@ function Cart() {
         </div>
       </div>
       {/* Order summary container */}
-      <div className="mb-16 border-b-[1px] border-t-[1px] border-primary-50 py-4">
+      <div className="border-b-[1px] border-t-[1px] border-primary-50 py-4">
         <h3 className="mb-2 font-semibold uppercase">order summary</h3>
 
         <div className="capitalize">
@@ -87,7 +87,7 @@ function Cart() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <span>{`Rs. ${totalPrice.toFixed(2)}`}</span>
+              <span>{`Rs. ${totalPrice}`}</span>
               <span className="self-end text-sm uppercase">free</span>
             </div>
           </div>
@@ -98,12 +98,12 @@ function Cart() {
                 (inclusive of all taxes)
               </h5>
             </div>
-            <span>{`Rs. ${totalPrice.toFixed(2)}`}</span>
+            <span>{`Rs. ${totalPrice}`}</span>
           </div>
         </div>
       </div>
       {/* CTA buttons */}
-      <Button size="xl">checkout</Button>
+      <Button size="large">checkout</Button>
     </div>
   );
 }

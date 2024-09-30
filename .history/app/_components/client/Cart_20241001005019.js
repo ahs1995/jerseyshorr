@@ -87,7 +87,7 @@ function Cart() {
             </div>
 
             <div className="flex flex-col gap-2">
-              <span>{`Rs. ${totalPrice.toFixed(2)}`}</span>
+              <span>{`Rs. ${totalPrice}`}</span>
               <span className="self-end text-sm uppercase">free</span>
             </div>
           </div>
@@ -98,7 +98,7 @@ function Cart() {
                 (inclusive of all taxes)
               </h5>
             </div>
-            <span>{`Rs. ${totalPrice.toFixed(2)}`}</span>
+            <span>{`Rs. ${totalPrice}`}</span>
           </div>
         </div>
       </div>

@@ -81,7 +81,7 @@ function Cart() {
         <div className="capitalize">
           <div className="mb-4 flex justify-between text-lg text-primary-800">
             <div className="flex flex-col gap-2">
-              <h4>item total {`(${totalItemQuantity} items)`}</h4>
+              <h4>item total {`${totalItemQuantity}`}</h4>
               <h4>shipping</h4>
             </div>
 

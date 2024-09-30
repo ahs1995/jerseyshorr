@@ -2,27 +2,20 @@
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
 import Quantity from "./Quantity";
-import {
-  deleteItem,
-  getCart,
-  getItemPrice,
-  getItemQuantity,
-} from "@/app/_lib/store/cartSlice";
+import { deleteItem, getCart } from "@/app/_lib/store/cartSlice";
 import { TrashIcon } from "@heroicons/react/24/solid";
 
 function Cart() {
   const dispatch = useDispatch();
   const cartItems = useSelector(getCart);
-  const totalPrice = useSelector(getItemPrice);
-  const totalItemQuantity = useSelector(getItemQuantity);
   return (
     <div className="py-6">
-      <h2 className="mb-6 text-xl font-semibold uppercase text-primary-800">
+      <h2 className="mb-8 text-xl font-semibold uppercase text-primary-800">
         your cart
       </h2>
       {/* items*/}
       <div className="mb-8">
-        <div className="bg-white-50 mb-8 flex justify-between p-2 text-xs font-semibold uppercase text-primary-800">
+        <div className="mb-8 flex justify-between text-xs font-semibold uppercase text-primary-800">
           <span>product</span>
           <span>price</span>
         </div>
@@ -80,24 +73,24 @@ function Cart() {
 
         <div className="capitalize">
           <div className="mb-4 flex justify-between text-lg text-primary-800">
-            <div className="flex flex-col gap-2">
-              <h4>item total {`(${totalItemQuantity} items)`}</h4>
+            <div>
+              <h4>item total</h4>
               <h4>shipping</h4>
             </div>
 
-            <div className="flex flex-col gap-2">
-              <span>{`Rs. ${totalPrice}`}</span>
-              <span className="self-end text-sm uppercase">free</span>
+            <div className="flex flex-col">
+              <span>amount</span>
+              <span>free</span>
             </div>
           </div>
-          <div className="flex justify-between border-t-[1px] border-primary-50 pt-4">
+          <div className="flex justify-between border-t-[1px] border-primary-50">
             <div>
               <h3>grand total</h3>
               <h5 className="text-sm text-primary-700">
                 (inclusive of all taxes)
               </h5>
             </div>
-            <span>{`Rs. ${totalPrice}`}</span>
+            <span>amount</span>
           </div>
         </div>
       </div>

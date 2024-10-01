@@ -10,14 +10,14 @@ function Coupons() {
     setOpenDetails((prev) => !prev);
   }
   return (
-    <div className="relative">
+    <div className="relative lg:w-auto">
       {/* heading */}
       <div className="flex justify-between">
         <div className="flex items-center gap-2">
           <TagIcon className="h-5 w-5" />
           <h3 className="text-md font-semibold uppercase">coupons & offers</h3>
         </div>
-        <span className="lg:hidden">
+        <span>
           <ChevronDownIcon
             className={clsx(
               "h-5 w-5 cursor-pointer transition-transform duration-300",
@@ -34,14 +34,13 @@ function Coupons() {
         className={clsx(
           "transition-max-height overflow-hidden duration-500 ease-in-out",
           openDetails ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-          "opacity-100 lg:max-h-96",
         )}
       >
         {/* coupon input */}
         <div className="mb-10 mt-6">
           <form className="relative">
             <input
-              className="relative w-full bg-white-50 px-3 py-4 outline-none"
+              className="relative w-auto bg-white-50 px-3 py-4 outline-none"
               type="text"
               placeholder="Type coupon code here"
             />

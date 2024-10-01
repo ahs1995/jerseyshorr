@@ -17,10 +17,10 @@ function Coupons() {
           <TagIcon className="h-5 w-5" />
           <h3 className="text-md font-semibold uppercase">coupons & offers</h3>
         </div>
-        <span className="lg:hidden">
+        <span>
           <ChevronDownIcon
             className={clsx(
-              "h-5 w-5 cursor-pointer transition-transform duration-300",
+              "h-5 w-5 cursor-pointer transition-transform duration-300 lg:hidden",
               {
                 "rotate-180": openDetails,
               },
@@ -34,7 +34,6 @@ function Coupons() {
         className={clsx(
           "transition-max-height overflow-hidden duration-500 ease-in-out",
           openDetails ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-          "opacity-100 lg:max-h-96",
         )}
       >
         {/* coupon input */}

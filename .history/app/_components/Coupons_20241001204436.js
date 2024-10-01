@@ -34,7 +34,6 @@ function Coupons() {
         className={clsx(
           "transition-max-height overflow-hidden duration-500 ease-in-out",
           openDetails ? "max-h-96 opacity-100" : "max-h-0 opacity-0",
-          "opacity-100 lg:max-h-96",
         )}
       >
         {/* coupon input */}

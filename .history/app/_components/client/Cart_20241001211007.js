@@ -18,11 +18,11 @@ function Cart() {
   const totalPrice = useSelector(getItemPrice);
   const totalItemQuantity = useSelector(getItemQuantity);
   return (
-    <div className="py-6">
-      <h2 className="text-md mb-6 font-semibold uppercase text-primary-800 xl:mb-10 xl:text-center xl:text-2xl">
+    <div className="py-6 xl:mx-auto">
+      <h2 className="text-md mb-6 font-semibold uppercase text-primary-800">
         your cart
       </h2>
-      <div className="justify-center xl:flex xl:gap-10">
+      <div className="xl:flex xl:gap-10">
         {/* items*/}
         <div className="mb-8">
           <div className="mb-8 flex justify-between bg-white-50 p-4 text-xs font-semibold uppercase text-primary-800">

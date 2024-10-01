@@ -43,15 +43,23 @@ function AddToCartButton({ product, discountedPrice }) {
       <Quantity quantity={quantity} setQuantity={setQuantity} />
 
       {/* add to cart button */}
-      <div className="mb-8 flex flex-row items-center gap-4">
-        <Button size="medium" onClick={handleAddToCart}>
+      <div className="mb-8 flex flex-row items-center gap-4 capitalize">
+        <Button size="large" onClick={handleAddToCart}>
           <div className="flex items-center gap-2">
-            <span className="capitalize">add to cart</span>
+            <div>add to cart</div>
             <span>
               <ShoppingCartIcon className="h-5 w-5" />
             </span>
           </div>
         </Button>
+        {/* <Button size="large" variant="primary">
+              <div className="flex items-center gap-1">
+                <span>buy now</span>
+                <span>
+                  <ChevronRightIcon className="h-5 w-5" />
+                </span>
+              </div>
+            </Button> */}
       </div>
     </div>
   );

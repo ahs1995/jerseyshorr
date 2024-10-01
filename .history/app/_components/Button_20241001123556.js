@@ -11,8 +11,8 @@ function Button({
   // Define size classes
   const sizeClasses = {
     small: "px-2 py-1 text-sm",
-    medium: "px-6 py-2 text-md text-base ",
-    large: "px-6 py-3 text-sm uppercase",
+    medium: "px-4 py-2 text-base",
+    large: "px-6 py-4 text-sm uppercase",
   };
 
   // Define variant classes

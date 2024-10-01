@@ -7,12 +7,13 @@ function Button({
   size = "small",
   variant = "primary",
   onClick,
+  icon,
 }) {
   // Define size classes
   const sizeClasses = {
     small: "px-2 py-1 text-sm",
-    medium: "px-6 py-2 text-md text-base ",
-    large: "px-6 py-3 text-sm uppercase",
+    medium: "px-4 py-2 text-lg text-base capitalize",
+    large: "px-6 py-2 text-sm uppercase",
   };
 
   // Define variant classes
@@ -21,6 +22,13 @@ function Button({
       "bg-accent-500 text-accent-50 border-transparent shadow-sm shadow-primary-700 text-center ",
     secondary: "bg-transparent text-accent-500 border-accent-500 border",
   };
+
+  function renderContent() {
+    <div className="flex items-center gap-2">
+      {children}
+      {icon && <span>{icon}</span>}
+    </div>;
+  }
 
   if (onClick) {
     return (
@@ -32,7 +40,7 @@ function Button({
         )}
       >
         <button href={`${path}`} onClick={onClick}>
-          {children}
+          {renderContent()}
         </button>
       </div>
     );
@@ -46,7 +54,7 @@ function Button({
         variantClasses[variant], // Dynamically set variant classes
       )}
     >
-      <Link href={`${path}`}>{children}</Link>
+      <Link href={`${path}`}>{renderContent()}</Link>
     </div>
   );
 }

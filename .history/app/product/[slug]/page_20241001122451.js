@@ -31,7 +31,7 @@ async function page({ params }) {
     material,
   } = product;
 
-  const discountedPrice = price - (price * discount) / 100;
+  const discountedPrice = (price - (price * discount) / 100).toFixed(2);
 
   // Fix padding. the child container of page element should have paddings.
 
@@ -85,7 +85,7 @@ async function page({ params }) {
               </h5>
               <h5>
                 <span>&#8377; </span>
-                {discountedPrice.toFixed(2)}
+                {discountedPrice}
               </h5>
             </div>
           </div>

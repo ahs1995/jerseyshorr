@@ -19,7 +19,7 @@ function Cart() {
   const totalItemQuantity = useSelector(getItemQuantity);
   return (
     <div className="py-6">
-      <h2 className="text-md mb-6 font-semibold uppercase text-primary-800">
+      <h2 className="mb-6 text-lg font-semibold uppercase text-primary-800">
         your cart
       </h2>
       {/* items*/}

@@ -1,0 +1,30 @@
+"use client";
+import { ChevronDownIcon, TagIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
+
+const [openDetails, setOpenDetails] = useState(false);
+
+function handleOpenDetails() {
+  setOpenDetails((prev) => !prev);
+}
+
+function Coupons() {
+  return (
+    <div className="relative">
+      <div className="flex justify-between">
+        <div className="flex items-center gap-2">
+          <TagIcon className="h-5 w-5" />
+          <h3 className="text-md font-semibold uppercase">coupons & offers</h3>
+        </div>
+        <span>
+          <ChevronDownIcon
+            className="h-5 w-5 cursor-pointer"
+            onClick={handleOpenDetails}
+          />
+        </span>
+      </div>
+    </div>
+  );
+}
+
+export default Coupons;

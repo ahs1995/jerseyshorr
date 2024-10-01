@@ -11,8 +11,8 @@ function Button({
   // Define size classes
   const sizeClasses = {
     small: "px-2 py-1 text-sm",
-    medium: "px-6 py-2 text-md text-base ",
-    large: "px-6 py-3 text-sm uppercase",
+    medium: "px-4 py-2 text-base",
+    large: "px-6 py-2 text-lg ",
   };
 
   // Define variant classes
@@ -26,7 +26,7 @@ function Button({
     return (
       <div
         className={clsx(
-          "cursor-pointer rounded-md outline-0", // Common classes
+          "cursor-pointer rounded-md text-center outline-0", // Common classes
           sizeClasses[size], // Dynamically set size classes
           variantClasses[variant], // Dynamically set variant classes
         )}

@@ -10,7 +10,6 @@ import {
 } from "@/app/_lib/store/cartSlice";
 import { TrashIcon } from "@heroicons/react/24/solid";
 import Button from "../Button";
-import Coupons from "../Coupons";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -19,7 +18,7 @@ function Cart() {
   const totalItemQuantity = useSelector(getItemQuantity);
   return (
     <div className="py-6">
-      <h2 className="text-md mb-6 font-semibold uppercase text-primary-800">
+      <h2 className="mb-6 text-xl font-semibold uppercase text-primary-800">
         your cart
       </h2>
       {/* items*/}
@@ -69,19 +68,14 @@ function Cart() {
               {/* price details */}
               <div>
                 <span className="text-md text-primary-800">
-                  {`Rs. ${item.totalPrice.toFixed(2)}`}
+                  {`Rs. ${item.totalPrice}`}
                 </span>
               </div>
             </div>
           ))}
         </div>
       </div>
-      {/* coupon */}
-      <div className="mb-6">
-        <Coupons />
-      </div>
-
-      {/* Order summary */}
+      {/* Order summary container */}
       <div className="mb-16 border-b-[1px] border-t-[1px] border-primary-50 py-4">
         <h3 className="mb-4 font-semibold uppercase">order summary</h3>
 

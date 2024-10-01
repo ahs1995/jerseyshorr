@@ -85,7 +85,7 @@ async function page({ params }) {
               </h5>
               <h5>
                 <span>&#8377; </span>
-                {discountedPrice.toFixed(2)}
+                {discountedPrice}
               </h5>
             </div>
           </div>

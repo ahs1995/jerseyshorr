@@ -79,7 +79,7 @@ async function page({ params }) {
                 <span>&#8377; </span>
                 {`${price}`}
               </h5>
-              <h5 className="text-primary-800">
+              <h5>
                 <span>&#8377; </span>
                 {discountedPrice.toFixed(2)}
               </h5>

@@ -19,7 +19,7 @@ function ProductSize({ size, setSelectedSize }) {
       <ul className="flex gap-2">
         {size.map((s, index) => (
           <li
-            className={`cursor-pointer border-[0.5px] border-primary-200 px-4 py-2 text-sm text-primary-800 ${selected === s && `bg-primary-900 text-primary-50`}`}
+            className={`cursor-pointer border-[0.5px] border-primary-200 px-4 py-2 text-sm ${selected === s && `bg-primary-900 text-primary-50`}`}
             key={index}
             onClick={() => handleSelected(s)}
           >

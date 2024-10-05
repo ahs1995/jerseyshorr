@@ -9,9 +9,7 @@ function ProductDescription({ content, name, season, material, team }) {
 
   return (
     <div>
-      <h5 className="mb-2 text-xl capitalize text-primary-800">
-        product description:
-      </h5>
+      <h5 className="mb-2 text-xl capitalize">product description:</h5>
       <p className="text-sm text-primary-700">{replacePlaceholders(content)}</p>
     </div>
   );

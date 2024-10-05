@@ -74,12 +74,12 @@ async function page({ params }) {
           <div>
             <h3 className="mb-4 text-2xl text-primary-800 lg:text-3xl">{`${name} [season ${season}]`}</h3>
             {/* price */}
-            <div className="mb-8 flex items-center gap-6 text-2xl">
+            <div className="mb-8 flex items-center gap-6 md:text-2xl">
               <h5 className="l text-accent-400 line-through">
                 <span>&#8377; </span>
                 {`${price}`}
               </h5>
-              <h5 className="text-primary-800">
+              <h5>
                 <span>&#8377; </span>
                 {discountedPrice.toFixed(2)}
               </h5>

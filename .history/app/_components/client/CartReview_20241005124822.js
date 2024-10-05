@@ -8,7 +8,7 @@ function CartReview() {
   return (
     <div className="border-t-[1px] border-primary-50 pt-4 lg:w-[400px] lg:border-t-0 lg:pt-0">
       <h3 className="text-md mb-6 font-semibold uppercase">Review your cart</h3>
-      <div className="flex flex-col gap-4 lg:gap-6">
+      <div className="flex flex-col gap-4">
         {cartItems.map((item) => (
           <div
             key={item.jerseyId}

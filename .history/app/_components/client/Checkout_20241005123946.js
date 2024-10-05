@@ -10,7 +10,7 @@ import CheckoutCta from "./CheckoutCta";
 
 function Checkout() {
   return (
-    <div className="grid grid-rows-[auto_1fr] gap-2 lg:justify-center">
+    <div className="grid grid-rows-[auto_1fr] gap-2">
       {/* heading */}
       <div className="mb-6 bg-primary-50 py-2 xl:mb-10">
         <h2 className="text-center text-lg font-bold uppercase text-primary-800 xl:text-2xl">
@@ -32,7 +32,7 @@ function Checkout() {
           </div>
         </div>
         {/* second column */}
-        <div className="md:flex md:justify-center md:gap-16 lg:flex-col lg:items-end lg:justify-start lg:gap-8">
+        <div className="md:flex md:gap-16 lg:flex-col lg:items-end lg:justify-start">
           {/* c_first column */}
           <div>
             {/* Cart review */}

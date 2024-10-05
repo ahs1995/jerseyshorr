@@ -32,7 +32,7 @@ function Checkout() {
           </div>
         </div>
         {/* second column */}
-        <div className="md:flex md:justify-center md:gap-16 lg:flex-col lg:items-end lg:justify-start lg:gap-8">
+        <div className="md:flex md:gap-16 lg:flex-col lg:items-end lg:justify-start">
           {/* c_first column */}
           <div>
             {/* Cart review */}

@@ -15,7 +15,7 @@ function MiniCartPrice() {
       <div className="flex flex-col items-end gap-2 capitalize text-primary-800">
         <span>{`${totalPrice.toFixed(2)}`}</span>
         <span>free</span>
-        <span className="text-xs text-primary-400">not applied</span>
+        <span className="text-xs text-primary-400">not aplied</span>
         <span className="font-semibold text-primary-800">{`${totalPrice.toFixed(2)}`}</span>
       </div>
     </div>

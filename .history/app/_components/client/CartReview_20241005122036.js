@@ -29,7 +29,7 @@ function CartReview() {
               <div className="flex-none">
                 <h5 className="text-xs text-primary-800 lg:text-sm">{`${item.jerseyName} season ${item.season}`}</h5>
                 <span className="text-xs text-primary-400 lg:text-sm">
-                  {`${item.quantity}x [ ${item.size} ]`}
+                  {`${item.quantity}x ${item.size}`}
                 </span>
               </div>
               {/* item total price */}

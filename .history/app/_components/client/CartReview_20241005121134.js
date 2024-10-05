@@ -12,7 +12,7 @@ function CartReview() {
         {cartItems.map((item) => (
           <div
             key={item.jerseyId}
-            className="flex gap-4 lg:grid lg:grid-cols-[auto_1fr]"
+            className="flex gap-4 lg:grid lg:grid-cols-[auto_1fr_1fr]"
           >
             {/* item image */}
             <span>
@@ -25,15 +25,15 @@ function CartReview() {
               />
             </span>
             {/* item details */}
-            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1fr] lg:items-center">
+            <div className="flex flex-col lg:grid lg:grid-cols-[1fr_1fr]">
               <div className="flex-none">
-                <h5 className="text-xs text-primary-800 lg:text-sm">{`${item.jerseyName} season ${item.season}`}</h5>
-                <span className="text-xs text-primary-400 lg:text-sm">
-                  {`${item.quantity}x [ ${item.size} ]`}
+                <h5 className="text-xs text-primary-800">{`${item.jerseyName} season ${item.season}`}</h5>
+                <span className="text-xs text-primary-400">
+                  {`${item.quantity}x`}
                 </span>
               </div>
               {/* item total price */}
-              <span className="mt-auto text-xs font-semibold text-primary-800 lg:mt-0 lg:justify-self-end lg:text-sm">{`Rs.${item.totalPrice.toFixed(2)}`}</span>
+              <span className="mt-auto text-xs font-semibold text-primary-800">{`Rs.${item.totalPrice.toFixed(2)}`}</span>
             </div>
           </div>
         ))}

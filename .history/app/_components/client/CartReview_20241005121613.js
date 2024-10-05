@@ -6,7 +6,7 @@ import Image from "next/image";
 function CartReview() {
   const cartItems = useSelector(getCart);
   return (
-    <div className="border-t-[1px] border-primary-50 pt-4 lg:w-[400px] lg:border-t-0 lg:pt-0">
+    <div className="border-t-[1px] border-primary-50 pt-4 lg:w-[full] lg:border-t-0 lg:pt-0">
       <h3 className="text-md mb-6 font-semibold uppercase">Review your cart</h3>
       <div className="flex flex-col gap-6">
         {cartItems.map((item) => (
@@ -29,7 +29,7 @@ function CartReview() {
               <div className="flex-none">
                 <h5 className="text-xs text-primary-800 lg:text-sm">{`${item.jerseyName} season ${item.season}`}</h5>
                 <span className="text-xs text-primary-400 lg:text-sm">
-                  {`${item.quantity}x [ ${item.size} ]`}
+                  {`${item.quantity}x`}
                 </span>
               </div>
               {/* item total price */}

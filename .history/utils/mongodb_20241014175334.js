@@ -10,21 +10,20 @@ if (!cached) {
   cached = global.mongoose = { conn: null, promise: null };
 }
 
-export async function dbConnect() {
+async function dbConnect() {
   if (cached.conn) {
     return cached.conn;
   }
   if (!cached.promise) {
     const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      bufferCommands: false,
     };
 
-    cached.promise = await mongoose
-      .connect(MONGODB_URL, opts)
-      .then((mongoose) => {
+    cached.promise = (await mongoose.connect(MONGODB_URL, opts)).then(
+      (mongoose) => {
         return mongoose;
-      });
+      },
+    );
   }
 
   try {
@@ -36,6 +35,8 @@ export async function dbConnect() {
 
   return cached.conn;
 }
+
+export default dbConnect;
 
 // import { MongoClient } from "mongodb";
 

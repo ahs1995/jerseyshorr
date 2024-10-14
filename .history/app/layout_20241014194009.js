@@ -30,6 +30,8 @@ export default async function RootLayout({ children }) {
   // Fetch product data's
   const { byStyle, teams, newArrival } = await getProducts(); //This will fetch products on every page load. consider caching strategies or server side rendering optimizations.
 
+  console.log("TEAMS:", teams);
+
   return (
     <html lang="en">
       <MenuProvider>

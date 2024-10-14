@@ -16,15 +16,14 @@ export async function dbConnect() {
   }
   if (!cached.promise) {
     const opts = {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
+      bufferCommands: false,
     };
 
-    cached.promise = await mongoose
-      .connect(MONGODB_URL, opts)
-      .then((mongoose) => {
+    cached.promise = (await mongoose.connect(MONGODB_URL, opts)).then(
+      (mongoose) => {
         return mongoose;
-      });
+      },
+    );
   }
 
   try {

@@ -20,11 +20,11 @@ export async function dbConnect() {
       useUnifiedTopology: true,
     };
 
-    cached.promise = await mongoose
-      .connect(MONGODB_URL, opts)
-      .then((mongoose) => {
+    cached.promise = (await mongoose.connect(MONGODB_URL, opts)).then(
+      (mongoose) => {
         return mongoose;
-      });
+      },
+    );
   }
 
   try {

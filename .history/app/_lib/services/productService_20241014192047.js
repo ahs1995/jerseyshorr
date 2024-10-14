@@ -7,17 +7,10 @@ export async function getProducts() {
 
     const products = await Product.find({}).lean();
 
-    // Transform products to plain JS objects
-    const transformedProducts = products.map((product) => ({
-      ...product,
-      _id: product._id.toString(), // Convert _id to string
-      // createdAt: product.createdAt ? product.createdAt.toISOString() : null, // Convert createdAt to ISO string
-    }));
-
     // Group products by style
 
     const groupedProducts = {
-      products: transformedProducts,
+      products,
       byStyle: {},
       newArrivals: [],
       teams: {},
@@ -25,7 +18,7 @@ export async function getProducts() {
 
     const teamSet = new Set();
 
-    transformedProducts.forEach((product) => {
+    products.forEach((product) => {
       // Group by style
       if (!groupedProducts.byStyle[product.style]) {
         groupedProducts.byStyle[product.style] = [];
@@ -44,10 +37,10 @@ export async function getProducts() {
     });
 
     // Create team data structure
-    groupedProducts.teams = Array.from(teamSet).map((team) => ({
+    groupedProducts.teans = Array.from(teamSet).map((team) => ({
       name: team,
       imageUrl: `/team-logos/${team.toLowerCase()}.png`,
-      productsCount: transformedProducts.filter((p) => p.team === team).length,
+      productsCount: products.filter((p) => p.team === team).length,
     }));
 
     return groupedProducts;

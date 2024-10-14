@@ -44,7 +44,7 @@ export async function getProducts() {
     });
 
     // Create team data structure
-    groupedProducts.teams = Array.from(teamSet).map((team) => ({
+    groupedProducts.teans = Array.from(teamSet).map((team) => ({
       name: team,
       imageUrl: `/team-logos/${team.toLowerCase()}.png`,
       productsCount: transformedProducts.filter((p) => p.team === team).length,

@@ -1,6 +1,30 @@
 import User from "@/models/User";
 import { dbConnect } from "@/utils/mongodb";
-import { createSendToken } from "@/utils/auth/createSendToken";
+
+const createSendToken = (user, statusCode, res) => {
+  const token = signToken(user._id);
+
+  const cookieOptions = {
+    expires: new Date(
+      Date.now() + process.env.JWT_COOKIE_EXPIRES_IN * 24 * 60 * 60 * 1000,
+    ),
+    httpOnly: true,
+  };
+  if (process.env.NODE_ENV === "production") cookieOptions.secure = true;
+
+  res.cookie("jwt", token, cookieOptions);
+
+  // Remove passeword from output
+  user.password = undefined;
+
+  res.status(statusCode).json({
+    status: "success",
+    token,
+    data: {
+      user,
+    },
+  });
+};
 
 export async function POST(req) {
   try {
@@ -28,9 +52,15 @@ export async function POST(req) {
 
     // Generate JWT and send it with response
 
-    const responseBody = createSendToken(newUser);
-
-    return new Response(JSON.stringify(responseBody), { status: 201 });
+    return new Response(
+      JSON.stringify({
+        message: "User registered successfully!",
+        user: newUser,
+      }),
+      {
+        status: 201,
+      },
+    );
   } catch (error) {
     console.log("Signup API error", error);
     return new Response(JSON.stringify({ message: error.message }), {

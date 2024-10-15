@@ -1,7 +1,6 @@
 import mongoose from "mongoose";
 import validator from "validator";
 import bcrypt from "bcrypt";
-import * as crypto from "crypto";
 
 const userSchema = new mongoose.Schema({
   name: { type: String, required: [true, "Please tell us your name."] },
@@ -72,10 +71,7 @@ userSchema.pre(/^find/, function (next) {
 });
 
 // Compare candidate password with user's password
-userSchema.methods.checkPassword = async function (
-  candidatePassword,
-  userPassword,
-) {
+const checkPassword = async function (candidatePassword, userPassword) {
   return await bcrypt.compare(candidatePassword, userPassword);
 };
 

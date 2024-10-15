@@ -1,6 +1,5 @@
 import User from "@/models/User";
 import { dbConnect } from "@/utils/mongodb";
-import { createSendToken } from "@/utils/auth/createSendToken";
 
 export async function POST(req) {
   try {
@@ -26,11 +25,15 @@ export async function POST(req) {
       passwordConfirm,
     });
 
-    // Generate JWT and send it with response
-
-    const responseBody = createSendToken(newUser);
-
-    return new Response(JSON.stringify(responseBody), { status: 201 });
+    return new Response(
+      JSON.stringify({
+        message: "User registered successfully!",
+        user: newUser,
+      }),
+      {
+        status: 201,
+      },
+    );
   } catch (error) {
     console.log("Signup API error", error);
     return new Response(JSON.stringify({ message: error.message }), {

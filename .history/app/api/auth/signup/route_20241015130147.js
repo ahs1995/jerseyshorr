@@ -28,7 +28,7 @@ export async function POST(req) {
 
     // Generate JWT and send it with response
 
-    const responseBody = createSendToken(newUser);
+    const responseBody = createSendToken(newUser, signup);
 
     return new Response(JSON.stringify(responseBody), { status: 201 });
   } catch (error) {

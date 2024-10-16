@@ -41,9 +41,13 @@ export async function PATCH(req) {
 
     //2 Check if provided password match with the password in the user document
 
-    if (
-      !curUserWithPass.checkPassword(currentPassword, curUserWithPass.password)
-    ) {
+    // 2. Verify the current password with bcrypt.compare
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      curUserWithPass.password,
+    );
+
+    if (!isPasswordCorrect) {
       return new Response(
         JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },
@@ -58,13 +62,12 @@ export async function PATCH(req) {
       );
     }
 
-    // 4. Update the password
     curUserWithPass.password = newPassword;
     curUserWithPass.passwordConfirm = passwordConfirm;
 
-    await curUserWithPass.save();
+    await currentUser.save();
 
-    // 5. Generate JWT and send the response with the new token
+    // 6. Generate JWT and send the response with the new token
     const responseBody = createSendToken(curUserWithPass);
 
     return new Response(

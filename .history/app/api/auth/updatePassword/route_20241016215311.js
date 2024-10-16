@@ -13,6 +13,7 @@ export async function PATCH(req) {
 
     const currentUser = await protectRoute(req);
 
+    console.log("currentUser:", currentUser);
     if (!currentUser) {
       return new Response(
         JSON.stringify({
@@ -41,9 +42,13 @@ export async function PATCH(req) {
 
     //2 Check if provided password match with the password in the user document
 
-    if (
-      !curUserWithPass.checkPassword(currentPassword, curUserWithPass.password)
-    ) {
+    // 2. Verify the current password with bcrypt.compare
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      curUserWithPass.password,
+    );
+
+    if (!isPasswordCorrect) {
       return new Response(
         JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },
@@ -58,13 +63,43 @@ export async function PATCH(req) {
       );
     }
 
-    // 4. Update the password
-    curUserWithPass.password = newPassword;
+    // 4. Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+
+    // if (!user.checkPassword(req.body.passwordCurrent, user.password)) {
+    //   return new Response(
+    //     JSON.stringify({
+    //       status: "fail",
+    //       message: "You have provided a wrong password",
+    //     }),
+    //     { status: 401 },
+    //   );
+    // }
+
+    // if (
+    //   !(await currentUser.checkPassword(currentPassword, currentUser.password))
+    // ) {
+    //   return new Response(
+    //     JSON.stringify({
+    //       status: "Fail",
+    //       message: "Your current password is wrong",
+    //     }),
+    //     { status: 401 },
+    //   );
+    // }
+
+    //3 Set the new password in the doc
+    // (user.password = req.body.password),
+    //   (user.passwordConfirm = req.body.passwordConfirm);
+
+    // await user.save();
+
+    curUserWithPass.password = hashedPassword;
     curUserWithPass.passwordConfirm = passwordConfirm;
 
-    await curUserWithPass.save();
+    await currentUser.save();
 
-    // 5. Generate JWT and send the response with the new token
+    // 6. Generate JWT and send the response with the new token
     const responseBody = createSendToken(curUserWithPass);
 
     return new Response(

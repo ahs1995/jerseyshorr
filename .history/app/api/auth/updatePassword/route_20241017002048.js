@@ -41,9 +41,13 @@ export async function PATCH(req) {
 
     //2 Check if provided password match with the password in the user document
 
-    if (
-      !curUserWithPass.checkPassword(currentPassword, curUserWithPass.password)
-    ) {
+    // 2.1 Verify the current password with bcrypt.compare
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      curUserWithPass.password,
+    );
+
+    if (!isPasswordCorrect) {
       return new Response(
         JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },

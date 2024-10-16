@@ -35,15 +35,15 @@ export async function PATCH(req) {
       );
     }
 
-    const curUserWithPass = await User.findById(currentUser._id).select(
-      "+password",
-    );
-
     //2 Check if provided password match with the password in the user document
 
-    if (
-      !curUserWithPass.checkPassword(currentPassword, curUserWithPass.password)
-    ) {
+    // 2. Verify the current password with bcrypt.compare
+    const isPasswordCorrect = await bcrypt.compare(
+      currentPassword,
+      currentUser.password,
+    );
+
+    if (!isPasswordCorrect) {
       return new Response(
         JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },
@@ -58,14 +58,44 @@ export async function PATCH(req) {
       );
     }
 
-    // 4. Update the password
-    curUserWithPass.password = newPassword;
-    curUserWithPass.passwordConfirm = passwordConfirm;
+    // 4. Hash the new password
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
 
-    await curUserWithPass.save();
+    // if (!user.checkPassword(req.body.passwordCurrent, user.password)) {
+    //   return new Response(
+    //     JSON.stringify({
+    //       status: "fail",
+    //       message: "You have provided a wrong password",
+    //     }),
+    //     { status: 401 },
+    //   );
+    // }
 
-    // 5. Generate JWT and send the response with the new token
-    const responseBody = createSendToken(curUserWithPass);
+    // if (
+    //   !(await currentUser.checkPassword(currentPassword, currentUser.password))
+    // ) {
+    //   return new Response(
+    //     JSON.stringify({
+    //       status: "Fail",
+    //       message: "Your current password is wrong",
+    //     }),
+    //     { status: 401 },
+    //   );
+    // }
+
+    //3 Set the new password in the doc
+    // (user.password = req.body.password),
+    //   (user.passwordConfirm = req.body.passwordConfirm);
+
+    // await user.save();
+
+    currentUser.password = hashedPassword;
+    currentUser.passwordConfirm = passwordConfirm;
+
+    await currentUser.save();
+
+    // 6. Generate JWT and send the response with the new token
+    const responseBody = createSendToken(currentUser);
 
     return new Response(
       JSON.stringify({

@@ -19,9 +19,18 @@ const loginSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
-  password: z.string().min(6, {
-    message: "Password must be atleast 6 characters long",
-  }),
+  password: z
+    .string()
+    .min(6, {
+      message: "Password must be atleast 6 characters long",
+    })
+    .max(20, {
+      message: "Password cannot exceed 20 characters",
+    })
+    .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+      message:
+        "Password must include at least one letter, one number, and one special character",
+    }),
 });
 
 function LoginForm() {
@@ -33,8 +42,8 @@ function LoginForm() {
     },
   });
 
-  function onSubmit() {
-    console.log("submitted");
+  function onSubmit(value) {
+    console.log(value);
   }
 
   return (

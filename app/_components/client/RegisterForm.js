@@ -15,21 +15,48 @@ import FormLabel from "../FormLabel";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
-const registerSchema = z.object({
-  name: z.string().min(3, {
-    message: "Please enter your name",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address",
-  }),
+const registerSchema = z
+  .object({
+    name: z
+      .string()
+      .min(3, {
+        message: "Please enter your name",
+      })
+      .max(50, {
+        message: "Name cannot exceed 50 characters",
+      })
+      .regex(/^[a-zA-Z\s]+$/, {
+        message: "Name can only contain alphabets",
+      }),
+    email: z.string().email({
+      message: "Please enter a valid email address",
+    }),
 
-  password: z.string().min(6, {
-    message: "Password must be atleast 6 characters long",
-  }),
-  passwordConfirm: z.string().min(6, {
-    message: "Password must be atleast 6 characters long",
-  }),
-});
+    password: z
+      .string()
+      .min(6, {
+        message: "Password must be atleast 6 characters long",
+      })
+      .max(20, {
+        message: "Password cannot exceed 20 characters",
+      })
+      .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+        message:
+          "Password must include at least one letter, one number, and one special character",
+      }),
+    passwordConfirm: z
+      .string()
+      .min(6, {
+        message: "Password must be atleast 6 characters long",
+      })
+      .max(20, {
+        message: "Password cannot exceed 20 characters",
+      }),
+  })
+  .refine((data) => data.password === data.passwordConfirm, {
+    message: "Passwords do not match",
+    path: ["passwordConfirm"],
+  });
 
 function RegisterForm() {
   const form = useForm({
@@ -42,8 +69,8 @@ function RegisterForm() {
     },
   });
 
-  function onSubmit() {
-    console.log("submitted");
+  function onSubmit(value) {
+    console.log(value);
   }
 
   return (

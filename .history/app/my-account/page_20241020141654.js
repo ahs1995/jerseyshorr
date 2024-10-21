@@ -1,0 +1,34 @@
+"use client";
+import { useAuth } from "@/hooks/useAuth";
+import UserDashboard from "../_components/client/UserDashboard";
+import { useSelector } from "react-redux";
+import UserProfile from "../_components/UserProfile";
+import LoginForm from "../_components/client/LoginForm";
+import RegisterForm from "../_components/client/RegisterForm";
+
+function MyAccount() {
+  const { isLoading } = useAuth();
+  const isAuthenticated = useSelector((state) => state.auth.isAuthenticated);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  return (
+    <div className="mx-auto w-[90%] py-8 lg:py-12 xl:w-[80%]">
+      {isAuthenticated ? (
+        <UserProfile />
+      ) : (
+        <div className="flex flex-col gap-16 md:flex-row md:gap-4 lg:gap-[6rem] xl:gap-[10rem]">
+          <div className="flex-1">
+            <LoginForm />
+          </div>
+          <div className="flex-1">
+            <RegisterForm />
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default MyAccount;

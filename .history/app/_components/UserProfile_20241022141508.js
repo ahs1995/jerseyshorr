@@ -7,7 +7,7 @@ import { useSelector } from "react-redux";
 import { logout } from "../_lib/actions";
 
 function UserProfile({ user }) {
-  const [isPending, startTransition] = useTransition();
+const [isPending, startTransition] = useTransition();
 
   // const router = useRouter();
   // const logoutMutation = useMutation({
@@ -38,17 +38,15 @@ function UserProfile({ user }) {
   //   }
   // }
 
-  function handleLogout() {
-    startTransition(() => logout());
+  const handleLogout() {
+    startTransition(()=> logout())
   }
 
   return (
     <div>
       <h2>{user.name}</h2>
       <h2>{user.email}</h2>
-      <Button onClick={handleLogout} disabled={isPending}>
-        {isPending ? "Logging out..." : "Logout"}
-      </Button>
+      <Button onClick={handleLogout}>logout</Button>
     </div>
   );
 }

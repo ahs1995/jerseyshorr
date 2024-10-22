@@ -39,23 +39,23 @@ export function useAuth() {
 
   // Logout mutation
 
-  const logoutMutation = useMutation({
-    mutationFn: async () => {
-      const response = await fetch("api/auth/logout", {
-        method: "GET",
-        credentials: "include",
-      });
-      if (!response.ok) {
-        const errorData = await response.json();
-        throw new Error(errorData.message || "Logout failed");
-      }
-    },
-    onSuccess: () => {
-      dispatch(clearUser());
-      queryClient.removeQueries(["user"]);
-      router.refresh();
-    },
-  });
+  // const logoutMutation = useMutation({
+  //   mutationFn: async () => {
+  //     const response = await fetch("api/auth/logout", {
+  //       method: "GET",
+  //       credentials: "include",
+  //     });
+  //     if (!response.ok) {
+  //       const errorData = await response.json();
+  //       throw new Error(errorData.message || "Logout failed");
+  //     }
+  //   },
+  //   onSuccess: () => {
+  //     dispatch(clearUser());
+  //     queryClient.removeQueries(["user"]);
+  //     router.refresh();
+  //   },
+  // });
 
   return {
     register: registerMutation.mutateAsync,

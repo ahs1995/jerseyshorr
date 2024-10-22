@@ -81,6 +81,14 @@ function LoginForm() {
     },
   });
 
+  // async function formSubmit(formData) {
+  //   try {
+  //     await registerMutation.mutateAsync(formData);
+  //   } catch (error) {
+  //     console.error("Registeration error:", error);
+  //   }
+  // }
+
   async function formSubmit(formData) {
     try {
       await loginMutation.mutateAsync(formData);

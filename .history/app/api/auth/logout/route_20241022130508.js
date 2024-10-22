@@ -23,18 +23,3 @@ export async function GET(req) {
     );
   }
 }
-
-// Alternate way
-// import { NextResponse } from "next/server";
-
-// export async function GET() {
-//   // Clear the JWT cookie by setting it to 'loggedOut' with a short expiration
-//   const response = NextResponse.json({ status: "success" });
-
-//   response.cookies.set("jwt", "loggedOut", {
-//     httpOnly: true,
-//     expires: new Date(Date.now() + 10 * 1000), // expires in 10 seconds
-//   });
-
-//   return response;
-// }

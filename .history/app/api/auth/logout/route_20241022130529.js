@@ -24,7 +24,6 @@ export async function GET(req) {
   }
 }
 
-// Alternate way
 // import { NextResponse } from "next/server";
 
 // export async function GET() {

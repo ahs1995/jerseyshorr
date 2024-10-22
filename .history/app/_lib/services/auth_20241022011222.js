@@ -52,22 +52,16 @@ export async function getUserProfile() {
     const user = await getAuthenticatedUser();
 
     if (!user) {
-      return {
-        success: false,
-        user: null,
-        error: "Not authenticated",
-      };
+      throw new Error("Not authenticated");
     }
 
     return {
       success: true,
       user,
-      error: null,
     };
   } catch (error) {
     return {
       success: false,
-      user: null,
       error: error.message,
     };
   }

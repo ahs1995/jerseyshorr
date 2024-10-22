@@ -17,7 +17,7 @@ async function MyAccount() {
           My account
         </h2>
       </div>
-      {plainUser ? (
+      {user ? (
         <Suspense fallback={<div>Loading profile...</div>}>
           <UserProfile user={plainUser} />
         </Suspense>

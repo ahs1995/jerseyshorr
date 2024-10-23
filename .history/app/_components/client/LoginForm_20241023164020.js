@@ -19,7 +19,6 @@ import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "@/app/_lib/store/authSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from "next/link";
 
 const loginSchema = z.object({
   email: z.string().email({
@@ -145,21 +144,17 @@ function LoginForm() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-accent-500 capitalize hover:bg-accent-400"
+              className="w-full bg-accent-500 hover:bg-accent-400"
               disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? "logging in..." : "login"}
+              {loginMutation.isPending ? "Logging in..." : "Login"}
             </Button>
-            <div className="text-center">
-              <Link
-                href={"/my-account/forgot-password"}
-                className="text-sm text-accent-500 hover:underline"
-              >
-                Forgotten password?
-              </Link>
-            </div>
           </form>
         </Form>
+        {/* extra actions */}
+        <div>
+          <Link href={"/myaccount/lost-password"}>Lost your password?</Link>
+        </div>
       </CardWrapper>
     </div>
   );

@@ -16,27 +16,13 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
-import { clearUser, setUser } from "@/app/_lib/store/authSlice";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import Link from "next/link";
 
 const loginSchema = z.object({
   email: z.string().email({
     message: "Please enter a valid email address",
   }),
-  password: z
-    .string()
-    .min(6, {
-      message: "Password must be atleast 6 characters long",
-    })
-    .max(20, {
-      message: "Password cannot exceed 20 characters",
-    })
-    .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
-      message:
-        "Password must include at least one letter, one number, and one special character",
-    }),
 });
 
 function LoginForm() {
@@ -102,8 +88,11 @@ function LoginForm() {
   }
 
   return (
-    <div>
-      <CardWrapper label="Login to your account" title="Login">
+    <div className="mx-auto max-w-[500px]">
+      <CardWrapper
+        label="Please enter your email address or mobile number to search for your account."
+        title="Find Your Account"
+      >
         <Form {...form}>
           <form onSubmit={form.handleSubmit(formSubmit)} className="space-y-6">
             {loginError && (
@@ -129,35 +118,14 @@ function LoginForm() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input {...field} type="password" placeholder="******" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
             <Button
               type="submit"
               className="w-full bg-accent-500 capitalize hover:bg-accent-400"
               disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? "logging in..." : "login"}
+              {loginMutation.isPending ? "Logging in..." : "reset password"}
             </Button>
-            <div className="text-center">
-              <Link
-                href={"/my-account/forgot-password"}
-                className="text-sm text-accent-500 hover:underline"
-              >
-                Forgotten password?
-              </Link>
-            </div>
           </form>
         </Form>
       </CardWrapper>

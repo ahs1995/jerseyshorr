@@ -145,21 +145,17 @@ function LoginForm() {
             </div>
             <Button
               type="submit"
-              className="w-full bg-accent-500 capitalize hover:bg-accent-400"
+              className="w-full bg-accent-500 hover:bg-accent-400"
               disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? "logging in..." : "login"}
+              {loginMutation.isPending ? "Logging in..." : "Login"}
             </Button>
-            <div className="text-center">
-              <Link
-                href={"/my-account/forgot-password"}
-                className="text-sm text-accent-500 hover:underline"
-              >
-                Forgotten password?
-              </Link>
-            </div>
           </form>
         </Form>
+
+        <div>
+          <Link href={"/myaccount/lost-password"}>Lost your password?</Link>
+        </div>
       </CardWrapper>
     </div>
   );

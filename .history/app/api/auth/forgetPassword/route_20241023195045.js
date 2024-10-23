@@ -8,7 +8,7 @@ const createResetURL = (req, resetToken) => {
   const host = req.headers.get("host"); // Get host from request headers
 
   // Construct the reset URL
-  const resetURL = `${protocol}://${host}/my-account/reset-password/${resetToken}`;
+  const resetURL = `${protocol}://${host}/reset-password/${resetToken}`;
 
   return resetURL;
 };

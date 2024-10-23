@@ -152,7 +152,7 @@ function LoginForm() {
             </Button>
             <div className="text-center">
               <Link
-                href={"/my-account/forgot-password"}
+                href={"/my-account/lost-password"}
                 className="text-sm text-accent-500 hover:underline"
               >
                 Forgotten password?

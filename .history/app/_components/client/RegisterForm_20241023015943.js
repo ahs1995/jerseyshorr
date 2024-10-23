@@ -65,7 +65,7 @@ const registerSchema = z
 
 function RegisterForm() {
   const [registerError, setRegisterError] = useState();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -92,31 +92,26 @@ function RegisterForm() {
         if (!response.ok) {
           const errorData = await response.json();
           return Promise.reject(
-            new Error(
-              errorData.message || "An error occured while registering user",
-            ),
+            new Error(errorData.message || "Registration failed"),
           );
         }
 
         return response.json();
       } catch (error) {
-        if (error instanceof Error) {
-          throw error;
-        } else {
-          throw new Error("An unexpected error occured");
-        }
+        return Promise.reject(
+          new Error("Something went wrong, please try again later."),
+        );
       }
     },
     onSuccess: (data) => {
-      // dispatch(setUser(data));
-      // queryClient.setQueryData(["user"], data);
-      // queryClient.invalidateQueries(["user"]);
-
+      dispatch(setUser(data.data));
+      queryClient.setQueryData(["user"], data);
+      queryClient.invalidateQueries(["user"]);
       // Force a router refresh to trigger server component re-render
       router.refresh();
     },
     onError: (error) => {
-      // dispatch(clearUser());
+      dispatch(clearUser());
 
       setRegisterError(error.message);
       console.error("Registration error:", error);
@@ -125,9 +120,7 @@ function RegisterForm() {
 
   async function formSubmit(formData) {
     setRegisterError("");
-    try {
-      await registerMutation.mutateAsync(formData);
-    } catch (error) {}
+    await registerMutation.mutateAsync(formData);
   }
 
   return (
@@ -136,7 +129,7 @@ function RegisterForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(formSubmit)} className="space-y-6">
             {registerError && (
-              <div className="px-4 text-center text-sm text-accent-400">
+              <div className="text-center text-sm text-accent-400">
                 {registerError}
               </div>
             )}

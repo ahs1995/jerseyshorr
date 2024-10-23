@@ -18,7 +18,6 @@ import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "@/app/_lib/store/authSlice";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 
 const loginSchema = z.object({
   email: z.string().email({
@@ -39,7 +38,6 @@ const loginSchema = z.object({
 });
 
 function LoginForm() {
-  const [loginError, setLoginError] = useState("");
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
@@ -54,50 +52,42 @@ function LoginForm() {
 
   const loginMutation = useMutation({
     mutationFn: async (userData) => {
-      try {
-        const response = await fetch("/api/auth/login", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-          credentials: "include",
-        });
+      const response = await fetch("/api/auth/login", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+        credentials: "include",
+      });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          throw new Error(errorData.message || "An error occured during login");
-        }
-
-        return response.json();
-      } catch (error) {
-        if (error instanceof Error) {
-          throw error;
-        } else {
-          throw new Error("An unexpected error occured");
-        }
+      if (!response.ok) {
+        const errorData = await response.json();
+        console.log("error response:", errorData);
+        throw new Error(errorData.message || "Login failed");
       }
+
+      return response.json();
     },
     onSuccess: (data) => {
-      // dispatch(setUser(data));
-      // queryClient.setQueryData(["user"], data);
-      // queryClient.invalidateQueries(["user"]);
-
+      dispatch(setUser(data.data));
+      queryClient.setQueryData(["user"], data);
+      queryClient.invalidateQueries(["user"]);
       // Force a router refresh to trigger server component re-render
       router.refresh();
       // Optional: Force a full page reload if needed
       // window.location.reload();
     },
     onError: (error) => {
-      // dispatch(clearUser());
-      setLoginError(error.message);
+      dispatch(clearUser());
       console.error("Login error:", error);
     },
   });
 
   async function formSubmit(formData) {
-    setLoginError("");
     try {
       await loginMutation.mutateAsync(formData);
-    } catch (error) {}
+    } catch (error) {
+      console.log("Login error:", error);
+    }
   }
 
   return (
@@ -105,11 +95,6 @@ function LoginForm() {
       <CardWrapper label="Login to your account" title="Login">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(formSubmit)} className="space-y-6">
-            {loginError && (
-              <div className="px-4 text-center text-sm text-accent-400">
-                {loginError}
-              </div>
-            )}
             <div className="space-y-4">
               <FormField
                 control={form.control}
@@ -145,9 +130,8 @@ function LoginForm() {
             <Button
               type="submit"
               className="w-full bg-accent-500 hover:bg-accent-400"
-              disabled={loginMutation.isPending}
             >
-              {loginMutation.isPending ? "Logging in..." : "Login"}
+              Login
             </Button>
           </form>
         </Form>

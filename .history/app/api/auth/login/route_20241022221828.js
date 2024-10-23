@@ -31,9 +31,7 @@ export async function POST(req) {
 
     if (!user || !(await user.checkPassword(password, user.password))) {
       return new Response(
-        JSON.stringify({
-          message: "Email or password is incorrect. Please try again.",
-        }),
+        JSON.stringify({ message: "Incorrect email or password" }),
         {
           status: 401,
         },

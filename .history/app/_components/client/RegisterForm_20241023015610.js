@@ -65,7 +65,7 @@ const registerSchema = z
 
 function RegisterForm() {
   const [registerError, setRegisterError] = useState();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -81,53 +81,39 @@ function RegisterForm() {
 
   const registerMutation = useMutation({
     mutationFn: async (userData) => {
-      try {
-        const response = await fetch("/api/auth/signup", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(userData),
-          credentials: "include",
-        });
+      const response = await fetch("/api/auth/signup", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+        credentials: "include",
+      });
 
-        if (!response.ok) {
-          const errorData = await response.json();
-          return Promise.reject(
-            new Error(
-              errorData.message || "An error occured while registering user",
-            ),
-          );
-        }
-
-        return response.json();
-      } catch (error) {
-        if (error instanceof Error) {
-          throw error;
-        } else {
-          throw new Error("An unexpected error occured");
-        }
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Registration failed");
       }
+
+      return response.json();
     },
     onSuccess: (data) => {
-      // dispatch(setUser(data));
-      // queryClient.setQueryData(["user"], data);
-      // queryClient.invalidateQueries(["user"]);
-
+      dispatch(setUser(data.data));
+      queryClient.setQueryData(["user"], data);
+      queryClient.invalidateQueries(["user"]);
       // Force a router refresh to trigger server component re-render
       router.refresh();
     },
     onError: (error) => {
-      // dispatch(clearUser());
-
-      setRegisterError(error.message);
+      dispatch(clearUser());
+      const errorMessage =
+        error?.message || "An unexpected error occured during registration";
+      setRegisterError(errorMessage);
       console.error("Registration error:", error);
     },
   });
 
   async function formSubmit(formData) {
     setRegisterError("");
-    try {
-      await registerMutation.mutateAsync(formData);
-    } catch (error) {}
+    await registerMutation.mutateAsync(formData);
   }
 
   return (
@@ -136,7 +122,7 @@ function RegisterForm() {
         <Form {...form}>
           <form onSubmit={form.handleSubmit(formSubmit)} className="space-y-6">
             {registerError && (
-              <div className="px-4 text-center text-sm text-accent-400">
+              <div className="text-center text-sm text-accent-400">
                 {registerError}
               </div>
             )}

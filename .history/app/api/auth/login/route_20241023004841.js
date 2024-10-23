@@ -32,7 +32,7 @@ export async function POST(req) {
     if (!user || !(await user.checkPassword(password, user.password))) {
       return new Response(
         JSON.stringify({
-          message: "Email or password is incorrect. Please try again.",
+          message: "You have entered an invalid username or password",
         }),
         {
           status: 401,

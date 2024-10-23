@@ -111,7 +111,6 @@ function RegisterForm() {
       // dispatch(setUser(data));
       // queryClient.setQueryData(["user"], data);
       // queryClient.invalidateQueries(["user"]);
-
       // Force a router refresh to trigger server component re-render
       router.refresh();
     },

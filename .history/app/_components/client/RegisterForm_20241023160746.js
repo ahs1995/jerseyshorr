@@ -65,7 +65,7 @@ const registerSchema = z
 
 function RegisterForm() {
   const [registerError, setRegisterError] = useState();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
 
@@ -108,15 +108,14 @@ function RegisterForm() {
       }
     },
     onSuccess: (data) => {
-      // dispatch(setUser(data));
-      // queryClient.setQueryData(["user"], data);
-      // queryClient.invalidateQueries(["user"]);
-
+      dispatch(setUser(data.data));
+      queryClient.setQueryData(["user"], data);
+      queryClient.invalidateQueries(["user"]);
       // Force a router refresh to trigger server component re-render
       router.refresh();
     },
     onError: (error) => {
-      // dispatch(clearUser());
+      dispatch(clearUser());
 
       setRegisterError(error.message);
       console.error("Registration error:", error);
@@ -125,9 +124,7 @@ function RegisterForm() {
 
   async function formSubmit(formData) {
     setRegisterError("");
-    try {
-      await registerMutation.mutateAsync(formData);
-    } catch (error) {}
+    await registerMutation.mutateAsync(formData);
   }
 
   return (

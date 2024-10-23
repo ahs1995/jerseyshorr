@@ -18,6 +18,20 @@ export async function POST(req, res) {
       );
     }
 
+    // Check if email is alreadu registered in db
+
+    const userExist = await User.findById({ email });
+
+    if (userExist) {
+      return new Response(
+        JSON.stringify({
+          message:
+            "This email is already registered. Please use a different email or log in.",
+        }),
+        { status: 400 },
+      );
+    }
+
     // Create new user
     const newUser = await User.create({
       name,
@@ -33,16 +47,6 @@ export async function POST(req, res) {
     return new Response(JSON.stringify(responseBody), { status: 201 });
   } catch (error) {
     console.log("Signup API error", error);
-    if (error.code === 11000 && error.keyPattern.email) {
-      return new Response(
-        JSON.stringify({
-          status: "fail",
-          message:
-            "This email is already registered. Please use a different email or log in.",
-        }),
-        { status: 400 },
-      );
-    }
     return new Response(JSON.stringify({ message: error.message }), {
       status: 400,
     });

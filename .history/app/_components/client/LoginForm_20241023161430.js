@@ -1,8 +1,8 @@
 "use client";
 
 import CardWrapper from "../CardWrapper";
-import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import * as z from "zod";
 import {
   Form,
@@ -14,75 +14,48 @@ import {
 import FormLabel from "../FormLabel";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { useDispatch } from "react-redux";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
-import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
 import { clearUser, setUser } from "@/app/_lib/store/authSlice";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-const registerSchema = z
-  .object({
-    name: z
-      .string()
-      .min(3, {
-        message: "Please enter your name",
-      })
-      .max(50, {
-        message: "Name cannot exceed 50 characters",
-      })
-      .regex(/^[a-zA-Z\s]+$/, {
-        message: "Name can only contain alphabets",
-      }),
-    email: z.string().email({
-      message: "Please enter a valid email address",
+const loginSchema = z.object({
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+  password: z
+    .string()
+    .min(6, {
+      message: "Password must be atleast 6 characters long",
+    })
+    .max(20, {
+      message: "Password cannot exceed 20 characters",
+    })
+    .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
+      message:
+        "Password must include at least one letter, one number, and one special character",
     }),
+});
 
-    password: z
-      .string()
-      .min(6, {
-        message: "Password must be atleast 6 characters long",
-      })
-      .max(20, {
-        message: "Password cannot exceed 20 characters",
-      })
-      .regex(/^(?=.*[a-zA-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]+$/, {
-        message:
-          "Password must include at least one letter, one number, and one special character",
-      }),
-    passwordConfirm: z
-      .string()
-      .min(6, {
-        message: "Password must be atleast 6 characters long",
-      })
-      .max(20, {
-        message: "Password cannot exceed 20 characters",
-      }),
-  })
-  .refine((data) => data.password === data.passwordConfirm, {
-    message: "Passwords do not match",
-    path: ["passwordConfirm"],
-  });
-
-function RegisterForm() {
-  const [registerError, setRegisterError] = useState();
-  // const dispatch = useDispatch();
+function LoginForm() {
+  const [loginError, setLoginError] = useState("");
+  const dispatch = useDispatch();
   const queryClient = useQueryClient();
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(registerSchema),
+    resolver: zodResolver(loginSchema),
     defaultValues: {
-      name: "",
       email: "",
       password: "",
-      passwordConfirm: "",
     },
   });
 
-  const registerMutation = useMutation({
+  const loginMutation = useMutation({
     mutationFn: async (userData) => {
       try {
-        const response = await fetch("/api/auth/signup", {
+        const response = await fetch("/api/auth/login", {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
@@ -91,11 +64,7 @@ function RegisterForm() {
 
         if (!response.ok) {
           const errorData = await response.json();
-          return Promise.reject(
-            new Error(
-              errorData.message || "An error occured while registering user",
-            ),
-          );
+          throw new Error(errorData.message || "An error occured during login");
         }
 
         return response.json();
@@ -111,49 +80,36 @@ function RegisterForm() {
       // dispatch(setUser(data));
       // queryClient.setQueryData(["user"], data);
       // queryClient.invalidateQueries(["user"]);
-
       // Force a router refresh to trigger server component re-render
       router.refresh();
+      // Optional: Force a full page reload if needed
+      // window.location.reload();
     },
     onError: (error) => {
       // dispatch(clearUser());
-
-      setRegisterError(error.message);
-      console.error("Registration error:", error);
+      setLoginError(error.message);
+      console.error("Login error:", error);
     },
   });
 
   async function formSubmit(formData) {
-    setRegisterError("");
+    setLoginError("");
     try {
-      await registerMutation.mutateAsync(formData);
+      await loginMutation.mutateAsync(formData);
     } catch (error) {}
   }
 
   return (
     <div>
-      <CardWrapper label="Create your account" title="Sign up">
+      <CardWrapper label="Login to your account" title="Login">
         <Form {...form}>
           <form onSubmit={form.handleSubmit(formSubmit)} className="space-y-6">
-            {registerError && (
+            {loginError && (
               <div className="px-4 text-center text-sm text-accent-400">
-                {registerError}
+                {loginError}
               </div>
             )}
             <div className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Name</FormLabel>
-                    <FormControl>
-                      <Input {...field} type="name" placeholder="john doe" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
               <FormField
                 control={form.control}
                 name="email"
@@ -184,26 +140,13 @@ function RegisterForm() {
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="passwordConfirm"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Confirm password</FormLabel>
-                    <FormControl>
-                      <Input {...field} type="password" placeholder="******" />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
             </div>
             <Button
               type="submit"
               className="w-full bg-accent-500 hover:bg-accent-400"
-              disabled={registerMutation.isLoading}
+              disabled={loginMutation.isPending}
             >
-              {registerMutation.isLoading ? "Signing user..." : "Signup"}
+              {loginMutation.isPending ? "Logging in..." : "Login"}
             </Button>
           </form>
         </Form>
@@ -212,4 +155,4 @@ function RegisterForm() {
   );
 }
 
-export default RegisterForm;
+export default LoginForm;

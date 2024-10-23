@@ -77,17 +77,16 @@ function LoginForm() {
       }
     },
     onSuccess: (data) => {
-      // dispatch(setUser(data));
-      // queryClient.setQueryData(["user"], data);
-      // queryClient.invalidateQueries(["user"]);
-
+      dispatch(setUser(data));
+      queryClient.setQueryData(["user"], data);
+      queryClient.invalidateQueries(["user"]);
       // Force a router refresh to trigger server component re-render
       router.refresh();
       // Optional: Force a full page reload if needed
       // window.location.reload();
     },
     onError: (error) => {
-      // dispatch(clearUser());
+      dispatch(clearUser());
       setLoginError(error.message);
       console.error("Login error:", error);
     },

@@ -13,7 +13,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import Button from "../Button";
 import Coupons from "../Coupons";
 import Link from "next/link";
-import AccountLayout from "@/app/_components/layouts/PageLayout";
+import AccountLayout from "@/app/_components/layouts/AccountLayout";
 
 function Cart() {
   const dispatch = useDispatch();

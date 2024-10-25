@@ -1,4 +1,3 @@
-// app/_components/Cart.js
 "use client";
 import { useDispatch, useSelector } from "react-redux";
 import Image from "next/image";
@@ -13,7 +12,6 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import Button from "../Button";
 import Coupons from "../Coupons";
 import Link from "next/link";
-import AccountLayout from "@/app/_components/layouts/PageLayout";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -22,15 +20,23 @@ function Cart() {
   const totalItemQuantity = useSelector(getItemQuantity);
 
   return (
-    <AccountLayout title="Your Cart">
+    <div className="grid grid-rows-[auto_1fr] justify-center gap-8">
+      {/* heading */}
+      <div className="bg-primary-50 py-4">
+        <h2 className="text-center text-lg font-bold uppercase text-primary-800 xl:text-2xl">
+          Your Cart
+        </h2>
+      </div>
+
+      {/* content */}
       {!cartItems.length ? (
         <div className="text-center">
-          <h3 className="mb-4 text-base text-primary-800 lg:text-lg">
+          <h3 className="mb-4 text-lg text-primary-800">
             Your cart is empty! Time to fill it up
           </h3>
           <Link
             href="/"
-            className="text-accent-500 underline transition-colors hover:text-accent-500/80"
+            className="text-primary-600 underline transition-colors hover:text-primary-800"
           >
             Continue shopping
           </Link>
@@ -160,7 +166,7 @@ function Cart() {
           </div>
         </div>
       )}
-    </AccountLayout>
+    </div>
   );
 }
 

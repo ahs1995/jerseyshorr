@@ -13,7 +13,7 @@ import { TrashIcon } from "@heroicons/react/24/solid";
 import Button from "../Button";
 import Coupons from "../Coupons";
 import Link from "next/link";
-import AccountLayout from "@/app/_components/layouts/PageLayout";
+import AccountLayout from "@/app/_components/layouts/AccountLayout";
 
 function Cart() {
   const dispatch = useDispatch();
@@ -25,12 +25,12 @@ function Cart() {
     <AccountLayout title="Your Cart">
       {!cartItems.length ? (
         <div className="text-center">
-          <h3 className="mb-4 text-base text-primary-800 lg:text-lg">
+          <h3 className="mb-4 text-lg text-primary-800">
             Your cart is empty! Time to fill it up
           </h3>
           <Link
             href="/"
-            className="text-accent-500 underline transition-colors hover:text-accent-500/80"
+            className="text-accent-500 underline transition-colors hover:text-accent-500/90"
           >
             Continue shopping
           </Link>

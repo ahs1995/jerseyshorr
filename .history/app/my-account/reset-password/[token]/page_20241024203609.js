@@ -1,5 +1,5 @@
 import ResetPasswordForm from "@/app/_components/client/ResetPasswordForm";
-import AccountLayout from "@/app/_components/layouts/PageLayout";
+import AccountLayout from "@/app/_components/layouts/AccountLayout";
 
 function ResetPasswordPage({ params }) {
   return (

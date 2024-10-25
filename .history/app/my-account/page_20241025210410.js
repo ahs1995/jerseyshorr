@@ -3,7 +3,7 @@ import UserProfile from "../_components/UserProfile";
 import LoginForm from "../_components/client/LoginForm";
 import RegisterForm from "../_components/client/RegisterForm";
 import { getUserProfile } from "../_lib/services/auth";
-import AccountLayout from "../_components/layouts/PageLayout";
+import AccountLayout from "../_components/layouts/AccountLayout";
 import Dashboard from "../_components/Dashboard";
 import DashboardContent from "../_components/client/DashboardContent";
 

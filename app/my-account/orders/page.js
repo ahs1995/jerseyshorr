@@ -2,6 +2,7 @@ import { getUserProfile } from "@/app/_lib/services/auth";
 import Dashboard from "@/app/_components/Dashboard";
 import AccountLayout from "@/app/_components/layouts/PageLayout";
 import OrdersContent from "@/app/_components/client/OrdersContent";
+import { redirect } from "next/navigation";
 
 export default async function OrdersPage() {
   const { user } = await getUserProfile();

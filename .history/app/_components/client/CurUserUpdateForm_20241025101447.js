@@ -1,5 +1,6 @@
 "use client";
 
+import CardWrapper from "../CardWrapper";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -15,41 +16,42 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 import { useState } from "react";
+import toast from "react-hot-toast";
 
-const curPasswordUpdateSchema = z
-  .object({
-    passwordCurrent: z.string().min(8, {
-      message: "Password must be at least 8 characters long",
+const userUpdateSchema = z.object({
+  name: z
+    .string()
+    .min(3, {
+      message: "Please enter your name",
+    })
+    .max(50, {
+      message: "Name cannot exceed 50 characters",
+    })
+    .regex(/^[a-zA-Z\s]+$/, {
+      message: "Name can only contain alphabets",
     }),
-    password: z.string().min(8, {
-      message: "Password must be at least 8 characters long",
-    }),
-    passwordConfirm: z.string(),
-  })
-  .refine((data) => data.password === data.passwordConfirm, {
-    message: "Passwords don't match",
-    path: ["passwordConfirm"],
-  });
+  email: z.string().email({
+    message: "Please enter a valid email address",
+  }),
+});
 
-function CurUserUpdateForm() {
-  const [errorPassword, setErrorPassword] = useState("");
+function CurUserUpdateForm({ user }) {
+  const [updateError, setUpdateError] = useState("");
   const router = useRouter();
 
   const form = useForm({
-    resolver: zodResolver(curPasswordUpdateSchema),
+    resolver: zodResolver(userUpdateSchema),
     defaultValues: {
-      passwordCurrent: "",
-      password: "",
-      passwordConfirm: "",
+      name: `${user.name}`,
+      email: `${user.email}`,
     },
   });
 
-  const passUpdateMutation = useMutation({
+  const userUpdateMutation = useMutation({
     mutationFn: async (userData) => {
       try {
-        const response = await fetch("api/auth/updatePassword", {
+        const response = await fetch("/api/auth/updateUser", {
           method: "PATCH",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify(userData),
@@ -60,7 +62,7 @@ function CurUserUpdateForm() {
           const errorData = await response.json();
           return Promise.reject(
             new Error(
-              errorData.message || "An error occured while updating password.",
+              errorData.message || "An error occured while updating user",
             ),
           );
         }
@@ -70,7 +72,7 @@ function CurUserUpdateForm() {
         if (error instanceof Error) {
           throw error;
         } else {
-          throw new Error("An unexpected error occured!");
+          throw new Error("An unexpected error occured");
         }
       }
     },
@@ -78,47 +80,42 @@ function CurUserUpdateForm() {
     onSuccess: (data) => {
       router.refresh();
       toast.success(data.message);
-      console.log(data);
     },
 
     onError: (error) => {
-      setErrorPassword(error.message);
-      console.log(error.message);
+      setUpdateError(error.message);
+      console.log("User update error", error);
     },
   });
 
   async function formSubmit(formData) {
-    setErrorPassword("");
+    setUpdateError("");
     try {
-      await passUpdateMutation.mutateAsync(formData);
+      await userUpdateMutation.mutateAsync(formData);
     } catch (error) {}
   }
 
   return (
-    <div className="mx-auto w-[95%] rounded-md p-6 shadow-md md:mx-0 md:max-w-[450px] md:rounded-none md:p-0 md:shadow-none">
+    <div className="max-w-[450px]">
       <Form {...form}>
         <form
           className="flex flex-col space-y-6"
           onSubmit={form.handleSubmit(formSubmit)}
         >
-          {errorPassword && (
+          {updateError && (
             <div className="px-4 text-center text-sm text-accent-400">
-              {errorPassword}
+              {updateError}
             </div>
           )}
           <div className="space-y-4">
             <FormField
               control={form.control}
-              name="passwordCurrent"
+              name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Current Password</FormLabel>
+                  <FormLabel>Name</FormLabel>
                   <FormControl>
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="Enter your current password"
-                    />
+                    <Input {...field} type="name" placeholder="Your name" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -126,32 +123,15 @@ function CurUserUpdateForm() {
             />
             <FormField
               control={form.control}
-              name="password"
+              name="email"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>New Password</FormLabel>
+                  <FormLabel>Email</FormLabel>
                   <FormControl>
                     <Input
                       {...field}
-                      type="password"
-                      placeholder="Enter your new password"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="passwordConfirm"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>Confirm Password</FormLabel>
-                  <FormControl>
-                    <Input
-                      {...field}
-                      type="password"
-                      placeholder="Confirm your current password"
+                      type="email"
+                      placeholder="Your email address"
                     />
                   </FormControl>
                   <FormMessage />
@@ -162,11 +142,9 @@ function CurUserUpdateForm() {
           <Button
             type="submit"
             className="self-end bg-accent-500 capitalize hover:bg-accent-400"
-            disabled={passUpdateMutation.isPending}
+            disabled={userUpdateMutation.isPending}
           >
-            {passUpdateMutation.isPending
-              ? "updating password..."
-              : "save changes"}
+            {userUpdateMutation.isPending ? "updating user..." : "save changes"}
           </Button>
         </form>
       </Form>

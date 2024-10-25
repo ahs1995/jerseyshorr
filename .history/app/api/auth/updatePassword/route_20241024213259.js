@@ -24,6 +24,8 @@ export async function PATCH(req) {
 
     const body = await req.json();
 
+    console.log(body);
+
     const { passwordCurrent, password, passwordConfirm } = body;
 
     // 1. Check if the current password is provided
@@ -40,16 +42,11 @@ export async function PATCH(req) {
 
     //2 Check if provided password match with the password in the user document
 
-    const currentPassVerify = await curUserWithPass.checkPassword(
-      passwordCurrent,
-      curUserWithPass.password,
-    );
-
-    if (!currentPassVerify) {
+    if (
+      !curUserWithPass.checkPassword(passwordCurrent, curUserWithPass.password)
+    ) {
       return new Response(
-        JSON.stringify({
-          message: "Incorrect current password! Please try again.",
-        }),
+        JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },
       );
     }

@@ -22,7 +22,11 @@ export async function PATCH(req) {
       );
     }
 
+    console.log("currentUser:", currentUser);
+
     const body = await req.json();
+
+    console.log("body:", body);
 
     const { passwordCurrent, password, passwordConfirm } = body;
 
@@ -37,6 +41,8 @@ export async function PATCH(req) {
     const curUserWithPass = await User.findById(currentUser._id).select(
       "+password",
     );
+
+    console.log("currentUserWithPass:", curUserWithPass);
 
     //2 Check if provided password match with the password in the user document
 

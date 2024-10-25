@@ -1,7 +1,8 @@
-import { dbConnect } from "@/utils/mongodb";
-import { protectRoute } from "@/utils/auth/middleware";
 import User from "@/models/User";
 import { createSendToken } from "@/utils/auth/createSendToken";
+import { protectRoute } from "@/utils/auth/middleware";
+import bcrypt from "bcrypt";
+import { dbConnect } from "@/utils/mongodb";
 
 export async function PATCH(req) {
   try {
@@ -24,10 +25,12 @@ export async function PATCH(req) {
 
     const body = await req.json();
 
-    const { passwordCurrent, password, passwordConfirm } = body;
+    console.log(body);
+
+    const { currentPassword, newPassword, passwordConfirm } = body;
 
     // 1. Check if the current password is provided
-    if (!passwordCurrent || !password || !passwordConfirm) {
+    if (!currentPassword || !newPassword || !passwordConfirm) {
       return new Response(
         JSON.stringify({ message: "Please provide all required fields" }),
         { status: 400 },
@@ -40,22 +43,17 @@ export async function PATCH(req) {
 
     //2 Check if provided password match with the password in the user document
 
-    const currentPassVerify = await curUserWithPass.checkPassword(
-      passwordCurrent,
-      curUserWithPass.password,
-    );
-
-    if (!currentPassVerify) {
+    if (
+      !curUserWithPass.checkPassword(currentPassword, curUserWithPass.password)
+    ) {
       return new Response(
-        JSON.stringify({
-          message: "Incorrect current password! Please try again.",
-        }),
+        JSON.stringify({ message: "Incorrect current password" }),
         { status: 401 },
       );
     }
 
     // 3. Check if new password and confirm password match
-    if (password !== passwordConfirm) {
+    if (newPassword !== passwordConfirm) {
       return new Response(
         JSON.stringify({ message: "Passwords do not match" }),
         { status: 400 },
@@ -63,7 +61,7 @@ export async function PATCH(req) {
     }
 
     // 4. Update the password
-    curUserWithPass.password = password;
+    curUserWithPass.password = newPassword;
     curUserWithPass.passwordConfirm = passwordConfirm;
 
     await curUserWithPass.save();
@@ -73,15 +71,16 @@ export async function PATCH(req) {
 
     return new Response(
       JSON.stringify({
-        status: "Success",
+        status: "success",
         message: "Password updated successfully!",
+        ...responseBody,
       }),
       { status: 200 },
     );
   } catch (error) {
     console.log("Update password error:", error);
     return new Response(
-      { status: "Fail", message: error.message },
+      { status: "fail", message: error.message },
       { status: 500 },
     );
   }

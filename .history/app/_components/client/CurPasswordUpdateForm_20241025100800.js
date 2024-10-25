@@ -95,7 +95,7 @@ function CurUserUpdateForm() {
   }
 
   return (
-    <div className="mx-auto w-[95%] rounded-md p-6 shadow-md md:mx-0 md:max-w-[450px] md:rounded-none md:p-0 md:shadow-none">
+    <div className="max-w-[450px]">
       <Form {...form}>
         <form
           className="flex flex-col space-y-6"

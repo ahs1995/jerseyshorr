@@ -1,10 +1,10 @@
 import { getUserProfile } from "@/app/_lib/services/auth";
 import Dashboard from "@/app/_components/Dashboard";
 import AccountLayout from "@/app/_components/layouts/PageLayout";
-import AddressesContent from "@/app/_components/client/AddressesContent";
+import OrdersContent from "@/app/_components/client/OrdersContent";
 import { redirect } from "next/navigation";
 
-export default async function AddressesPage() {
+export default async function OrdersPage() {
   const { user } = await getUserProfile();
   const plainUser = user ? JSON.parse(JSON.stringify(user)) : null;
 
@@ -22,7 +22,7 @@ export default async function AddressesPage() {
             </h1>
           </div>
           {/* Orders content */}
-          <AddressesContent user={plainUser} />
+          <OrdersContent user={plainUser} />
         </div>
       </Dashboard>
     </AccountLayout>

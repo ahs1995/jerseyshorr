@@ -5,15 +5,11 @@ import { Bars3Icon } from "@heroicons/react/24/solid";
 import { useMenu } from "@/context/menuContext";
 
 const MenuButton = () => {
-  const { showMenu, setShowMenu, isMobile, showCategorySide } = useMenu();
-
-  function toggleSidebar() {
-    setSidebarOpen(!sidebarOpen);
-  }
+  const { showMenu, setShowMenu, showCategorySide } = useMenu();
 
   // Disable scrolling when the sidebar is open
   useEffect(() => {
-    if ((showMenu && isMobile) || showCategorySide) {
+    if (showMenu || showCategorySide) {
       document.body.classList.add("overflow-hidden");
     } else {
       document.body.classList.remove("overflow-hidden");
@@ -23,13 +19,13 @@ const MenuButton = () => {
     return () => {
       document.body.classList.remove("overflow-hidden");
     };
-  }, [showMenu, isMobile, showCategorySide]);
+  }, [showMenu, showCategorySide]);
 
   return (
     <>
       {/* Hamburger Icon */}
       <Bars3Icon
-        className="stroke-5 h-7 w-7 cursor-pointer text-primary-900 transition-colors duration-300 hover:text-accent-500"
+        className="stroke-5 h-7 w-7 cursor-pointer text-primary-900 transition-colors duration-300 hover:text-accent-500 md:hidden"
         onClick={() => setShowMenu(true)}
       />
     </>

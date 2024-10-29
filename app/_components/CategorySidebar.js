@@ -3,26 +3,16 @@ import { useMenu } from "@/context/menuContext";
 import { ArrowLeftIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import CTASidebar from "./CTASidebar";
-import { useEffect, useMemo } from "react";
 import useCategories from "@/hooks/useCategories";
 
 function CategorySidebar({ byStyle, teams }) {
-  const { showCategorySide, setShowCategorySide, setShowMenu, isMobile } =
-    useMenu();
+  const { showCategorySide, setShowCategorySide, setShowMenu } = useMenu();
 
   const categories = useCategories(byStyle, teams);
 
-  // Check if device is mobile, only once on component mount
-  useEffect(() => {
-    if (!isMobile) {
-      // Ensure that the state update happens only after rendering is complete
-      setShowCategorySide(false);
-    }
-  }, [isMobile, setShowCategorySide]);
-
   return (
     <aside
-      className={`absolute left-0 top-0 z-[100000] h-full w-[80vw] bg-[#fff] shadow-md duration-300 ease-in-out ${
+      className={`absolute left-0 top-0 z-[100000] h-full w-[80vw] bg-[#fff] shadow-md duration-300 ease-in-out md:hidden ${
         showCategorySide ? "translate-x-0" : "-translate-x-full"
       }`}
     >

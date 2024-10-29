@@ -3,15 +3,10 @@ import React from "react";
 import { useMenu } from "@/context/menuContext";
 
 const Overlay = () => {
-  const {
-    showMenu,
-    setShowMenu,
-    isMobile,
-    showCategorySide,
-    setShowCategorySide,
-  } = useMenu();
+  const { showMenu, setShowMenu, showCategorySide, setShowCategorySide } =
+    useMenu();
 
-  if ((!showMenu && !showCategorySide) || !isMobile) return null;
+  if (!showMenu && !showCategorySide) return null;
 
   return (
     <div

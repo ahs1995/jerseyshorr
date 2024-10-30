@@ -27,8 +27,8 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={`${josefin.className} flex min-h-screen flex-col`}>
         <Providers>
-          <NotfiicationBanner />
           <MenuProvider>
+            <NotfiicationBanner />
             <Header />
             <CategoryExplorer />
           </MenuProvider>

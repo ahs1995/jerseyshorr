@@ -1,7 +1,16 @@
 import { dbConnect } from "@/utils/mongodb";
+import redis from "@/lib/redis";
 import Product from "@/models/Product";
 
 export async function getProducts() {
+  const cacheKey = "products";
+  const cachedData = await redis.get(cacheKey);
+
+  if (cachedData) {
+    console.log("serving from cache");
+    return cachedData;
+  }
+
   try {
     await dbConnect();
 
@@ -50,6 +59,7 @@ export async function getProducts() {
       productsCount: transformedProducts.filter((p) => p.team === team).length,
     }));
 
+    await redis.setex(cacheKey, 60, JSON.stringify(groupedProducts));
     return groupedProducts;
   } catch (e) {
     console.error(e);
